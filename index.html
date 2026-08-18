@@ -6,141 +6,238 @@
 <title>途迹 TripMap · 左右滑动版</title>
 <style>
 :root{
-  --sky:#0ea5e9; --indigo:#6366f1; --cyan:#06b6d4; --ink:#0f172a; --muted:#64748b;
-  --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
+  --sky:#0ea5e9; --indigo:#6366f1; --cyan:#22d3ee; --lime:#d9fc75; --peach:#ffd8c9;
+  --ink:#0f172a; --muted:#64748b; --line:rgba(255,255,255,.7);
+  --glass:rgba(255,255,255,.72);
   --grad:linear-gradient(135deg,#0ea5e9,#6366f1);
+  --grad2:linear-gradient(135deg,#2fd374,#06ad56);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg)}
-#app{display:flex;flex-direction:column;height:100%}
+body{font-family:Inter,system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:#f6f7fb}
+::selection{background:rgba(99,102,241,.25)}
 
-/* ===== 顶栏 ===== */
-.topbar{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:max(10px,env(safe-area-inset-top)) 16px 10px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
-.topbar .logo{font-size:20px;line-height:1}
-.topbar h1{font-size:16px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
-.topbar .hint{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap}
+/* ===== 绚丽动态背景光斑 ===== */
+.bgfx{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75;will-change:transform}
+.b1{width:520px;height:520px;left:-140px;top:-160px;background:radial-gradient(circle,rgba(170,183,255,.85),rgba(170,183,255,0) 70%);animation:drift1 26s ease-in-out infinite}
+.b2{width:460px;height:460px;right:-120px;top:-80px;background:radial-gradient(circle,rgba(255,216,201,.9),rgba(255,216,201,0) 70%);animation:drift2 30s ease-in-out infinite}
+.b3{width:420px;height:420px;left:-100px;bottom:-140px;background:radial-gradient(circle,rgba(217,252,117,.8),rgba(217,252,117,0) 70%);animation:drift3 28s ease-in-out infinite}
+.b4{width:500px;height:500px;right:-120px;bottom:-180px;background:radial-gradient(circle,rgba(125,211,252,.85),rgba(125,211,252,0) 70%);animation:drift1 34s ease-in-out infinite reverse}
+.b5{width:260px;height:260px;left:38%;top:12%;background:radial-gradient(circle,rgba(232,121,249,.5),rgba(232,121,249,0) 70%);animation:drift2 22s ease-in-out infinite}
+.b6{width:220px;height:220px;right:30%;bottom:16%;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,255,255,0) 70%);animation:drift3 20s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,50px) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,60px) scale(1.08)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(50px,-60px) scale(.92)}}
 
-/* ===== 横向滑动轨道 ===== */
+#app{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
+
+/* ===== 顶部悬浮导航（桌面）===== */
+.topnav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:4px;padding:6px;border-radius:999px;background:rgba(255,255,255,.65);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);border:1px solid rgba(255,255,255,.8);box-shadow:0 8px 32px rgba(15,23,42,.12)}
+.tnav{display:flex;align-items:center;gap:8px;border:none;background:transparent;cursor:pointer;padding:9px 12px;border-radius:999px;color:#475569;transition:all .25s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;font-family:inherit}
+.tnav .ic{font-size:18px;line-height:1;flex:0 0 auto;transition:transform .25s}
+.tnav .lb{max-width:0;overflow:hidden;white-space:nowrap;font-size:13px;font-weight:700;opacity:0;transition:max-width .28s ease,opacity .2s ease,margin .28s ease}
+.tnav:hover .lb,.tnav.active .lb{max-width:90px;opacity:1;margin-left:2px}
+.tnav:hover{background:rgba(255,255,255,.85);color:var(--indigo);transform:translateY(-1px)}
+.tnav:hover .ic{transform:scale(1.15)}
+.tnav.active{background:var(--grad);color:#fff;box-shadow:0 6px 18px rgba(14,165,233,.4)}
+.tnav.active .ic{transform:scale(1.08)}
+@media(max-width:767px){.topnav{display:none}}
+
+/* ===== 底部导航（移动端）===== */
+.botnav{display:none}
+@media(max-width:767px){
+  .botnav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:50;display:flex;padding:6px;border-radius:24px;background:rgba(255,255,255,.72);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);border:1px solid rgba(255,255,255,.85);box-shadow:0 10px 40px rgba(15,23,42,.16)}
+  .bnav{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;border:none;background:transparent;cursor:pointer;padding:6px 0;border-radius:18px;color:#94a3b8;font-family:inherit;transition:all .2s}
+  .bnav .ic{font-size:19px}
+  .bnav .lb{font-size:10px;font-weight:700}
+  .bnav.active{background:var(--grad);color:#fff;box-shadow:0 6px 16px rgba(14,165,233,.4)}
+}
+
+/* ===== 页面轨道 ===== */
 .pages{flex:1 1 auto;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;cursor:grab}
 .pages:active{cursor:grabbing}
 .pages::-webkit-scrollbar{display:none}
-.page{flex:0 0 100%;height:100%;overflow-y:auto;scroll-snap-align:start;scroll-snap-stop:always;padding:16px 16px calc(92px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}
+.page{flex:0 0 100%;height:100%;overflow-y:auto;scroll-snap-align:start;scroll-snap-stop:always;padding:76px 20px calc(92px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}
 .page::-webkit-scrollbar{width:0}
+@media(min-width:768px){.page{padding:88px 28px 40px}}
 
-/* ===== 通用卡片/控件 ===== */
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 1px 2px rgba(15,23,42,.04);margin-bottom:14px}
-.card h3{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:12px}
-.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#0369a1;background:#e0f2fe;border:1px solid #bae6fd;border-radius:999px;padding:4px 10px;margin-bottom:10px}
-.hero h1{font-size:26px;font-weight:900;letter-spacing:-.5px}
-.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{font-size:13px;color:var(--muted);margin-top:4px}
-.field-label{font-size:12px;font-weight:700;color:#334155;margin:0 0 6px 2px}
-.input,textarea.input{width:100%;border:1px solid var(--line);border-radius:14px;padding:11px 12px;font-size:14px;font-family:inherit;color:var(--ink);background:#f8fafc;outline:none;transition:border .15s,box-shadow .15s;resize:none}
-.input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(14,165,233,.12);background:#fff}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.chip{border:1px solid var(--line);background:#fff;color:#475569;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
-.chip.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(14,165,233,.3)}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:none;border-radius:16px;padding:14px;font-size:15px;font-weight:800;color:#fff;background:var(--grad);cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .15s;box-shadow:0 8px 20px rgba(14,165,233,.28);font-family:inherit}
-.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(14,165,233,.35)}
-.btn:active{transform:translateY(0)}
+/* ===== 玻璃卡片 & 通用 ===== */
+.card{background:var(--glass);border:1px solid var(--line);border-radius:24px;padding:20px;margin-bottom:16px;backdrop-filter:blur(14px) saturate(1.5);-webkit-backdrop-filter:blur(14px) saturate(1.5);box-shadow:0 4px 24px rgba(15,23,42,.06);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(15,23,42,.10)}
+.card h3{font-size:14px;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#4338ca;background:rgba(233,231,255,.9);border:1px solid rgba(196,181,253,.7);border-radius:999px;padding:6px 14px;margin-bottom:14px}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hero h1{font-size:clamp(28px,5vw,40px);font-weight:900;letter-spacing:-1px;line-height:1.15;background:linear-gradient(120deg,#0ea5e9 10%,#6366f1 45%,#a855f7 80%);-webkit-background-clip:text;background-clip:text;color:transparent;animation:floaty 5s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.hero p{font-size:14px;color:var(--muted);margin-top:8px}
+.hero .hl{background:linear-gradient(180deg,transparent 62%,var(--lime) 62%)}
+.field-label{font-size:12px;font-weight:700;color:#334155;margin:0 0 8px 2px;display:flex;align-items:center;gap:6px}
+.input{width:100%;border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:13px 14px;font-size:14px;font-family:inherit;color:var(--ink);background:rgba(255,255,255,.8);outline:none;transition:all .2s;resize:none;box-shadow:inset 0 1px 3px rgba(15,23,42,.04)}
+.input:focus{border-color:var(--sky);box-shadow:0 0 0 4px rgba(14,165,233,.14)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chip{border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.8);color:#475569;border-radius:999px;padding:8px 15px;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;font-family:inherit;box-shadow:0 2px 8px rgba(15,23,42,.05)}
+.chip:hover{transform:translateY(-1px)}
+.chip.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 18px rgba(14,165,233,.35)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:none;border-radius:18px;padding:15px;font-size:15px;font-weight:800;color:#fff;background:var(--grad);cursor:pointer;transition:all .2s;box-shadow:0 10px 26px rgba(14,165,233,.3);font-family:inherit}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(14,165,233,.42)}
+.btn:active{transform:translateY(0) scale(.98)}
 .btn:disabled{background:#cbd5e1;box-shadow:none;cursor:not-allowed;transform:none}
-.btn.ghost{background:#fff;color:var(--indigo);border:1.5px solid #c7d2fe;box-shadow:none}
-.btn.ghost:hover{border-color:var(--indigo)}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.feature{background:linear-gradient(180deg,#f0f9ff,#e0f2fe);border:1px solid #bae6fd;border-radius:16px;padding:12px 8px;text-align:center}
-.feature .ic{font-size:20px}
-.feature .t{font-size:12px;font-weight:800;margin-top:6px}
-.feature .d{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.4}
+.btn.green{background:var(--grad2);box-shadow:0 10px 26px rgba(6,173,86,.3)}
+.btn.green:hover{box-shadow:0 14px 34px rgba(6,173,86,.42)}
+.btn.ghost{background:rgba(255,255,255,.85);color:var(--indigo);border:1.5px solid rgba(196,181,253,.9);box-shadow:none}
+.btn.ghost:hover{border-color:var(--indigo);background:#fff}
+.btn.small{width:auto;padding:10px 18px;font-size:13px;border-radius:14px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:767px){.features{grid-template-columns:repeat(3,1fr)}}
+.feature{background:rgba(255,255,255,.66);border:1px solid var(--line);border-radius:20px;padding:16px 10px;text-align:center;transition:all .25s;cursor:default}
+.feature:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 14px 30px rgba(15,23,42,.10)}
+.feature .ic{font-size:26px;filter:drop-shadow(0 4px 8px rgba(15,23,42,.15))}
+.feature .t{font-size:13px;font-weight:800;margin-top:8px}
+.feature .d{font-size:10.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.stats{display:flex;justify-content:space-around;padding:16px 6px;margin-top:16px;border-top:1px dashed rgba(148,163,184,.4)}
+.stats .v{font-size:19px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats .k{font-size:11px;color:var(--muted);margin-top:2px}
 
 /* ===== 行程页 ===== */
-.daytabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}
+.section-title{font-size:18px;font-weight:900;margin:4px 0 14px;display:flex;align-items:center;gap:8px}
+.section-title small{font-size:11px;color:var(--muted);font-weight:500;margin-left:auto}
+.daytabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none}
 .daytabs::-webkit-scrollbar{display:none}
-.map{position:relative;height:200px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#e8f4fd 0%,#dbeafe 40%,#e0e7ff 100%)}
-.map .road{position:absolute;left:-10%;right:-10%;top:58%;height:54px;border-top:3px dashed #94a3b8;border-bottom:3px dashed #94a3b8;transform:rotate(-6deg)}
-.map .marker{position:absolute;font-size:18px;filter:drop-shadow(0 2px 3px rgba(15,23,42,.35));transform:translate(-50%,-100%)}
-.map .marker b{position:absolute;left:50%;top:100%;transform:translateX(-50%);background:#fff;border:1px solid var(--sky);color:#0369a1;font-size:10px;font-weight:800;padding:1px 6px;border-radius:999px;white-space:nowrap;margin-top:2px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
-.map .attr{position:absolute;right:8px;bottom:6px;font-size:10px;color:#64748b;background:rgba(255,255,255,.85);border-radius:6px;padding:2px 6px}
-.place{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
-.place:last-child{border-bottom:none}
-.place .em{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto}
-.place .nm{font-size:13.5px;font-weight:700}
-.place .sm{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.35}
-.place .tg{font-size:10px;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:999px;padding:2px 8px;flex:0 0 auto}
-.cat-景点{background:#f0fdfa}.cat-美食{background:#fff7ed}.cat-住宿{background:#f0f9ff}.cat-交通{background:#f5f3ff}
+.mats{display:flex;flex-direction:column;gap:10px}
+.place{display:flex;align-items:center;gap:12px;padding:12px;border-radius:18px;background:rgba(255,255,255,.8);border:1px solid var(--line);transition:transform .2s,box-shadow .2s,opacity .2s;touch-action:none;cursor:grab;user-select:none;position:relative}
+.place:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,23,42,.10)}
+.place.dragging{opacity:.35;transform:scale(.97)}
+.place.pop{animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{0%{transform:scale(.6)}70%{transform:scale(1.08)}100%{transform:scale(1)}}
+.place .em{width:46px;height:46px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:22px;flex:0 0 auto;box-shadow:inset 0 0 0 1px rgba(255,255,255,.6)}
+.place .nm{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px}
+.place .sm{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.place .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tag{font-size:10px;font-weight:800;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.tag.price{color:#065f46;background:#d1fae5}
+.tag.tip{color:#92400e;background:#fef3c7}
+.tag.day{color:#4338ca;background:#e0e7ff}
+.tag.cat{color:#0c4a6e;background:#e0f2fe}
+.days{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:1023px){.days{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.days{grid-template-columns:1fr}}
+.daycol{background:rgba(255,255,255,.55);border:2px dashed rgba(148,163,184,.45);border-radius:22px;padding:14px;min-height:180px;transition:all .25s}
+.daycol.drag-over{border-color:var(--indigo);background:rgba(233,231,255,.7);box-shadow:0 0 0 4px rgba(99,102,241,.15)}
+.daycol .dh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.daycol .dh .dn{font-size:14px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.daycol .dh .dc{font-size:10.5px;font-weight:800;color:#fff;background:var(--indigo);border-radius:999px;padding:2px 9px;margin-left:auto}
+.daycol .empty{font-size:11.5px;color:#94a3b8;text-align:center;padding:22px 0;font-weight:600}
+.daycol .ins{height:3px;border-radius:99px;background:var(--indigo);margin:4px 0;opacity:0;transition:opacity .15s}
+.daycol .ins.show{opacity:1}
+.dragghost{position:fixed;z-index:100;pointer-events:none;opacity:.92;transform:rotate(2deg) scale(1.03);box-shadow:0 20px 50px rgba(15,23,42,.25)}
+.map{position:relative;height:230px;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#dbeafe 0%,#e0e7ff 50%,#fce7f3 100%)}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.map .route{fill:none;stroke:#6366f1;stroke-width:3;stroke-linecap:round;stroke-dasharray:8 8;animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.map .attr{position:absolute;right:10px;bottom:8px;font-size:10px;color:#64748b;background:rgba(255,255,255,.85);border-radius:8px;padding:3px 8px;backdrop-filter:blur(4px)}
+.map .mk{position:absolute;font-size:20px;filter:drop-shadow(0 3px 4px rgba(15,23,42,.35));transform:translate(-50%,-100%);animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,-100%) translateY(0)}50%{transform:translate(-50%,-100%) translateY(-4px)}}
+.map .mk b{position:absolute;left:50%;top:100%;transform:translateX(-50%);background:#fff;border:1px solid rgba(99,102,241,.5);color:#4338ca;font-size:10px;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap;margin-top:3px;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.map .mk:nth-child(2){animation-delay:.4s}
+.map .mk:nth-child(3){animation-delay:.8s}
+.map .mk:nth-child(4){animation-delay:1.2s}
+.hint{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
 
 /* ===== 攻略页 ===== */
-.guide{border:1px solid var(--line);border-radius:18px;padding:14px;background:linear-gradient(180deg,#fff,#fafbff);margin-bottom:12px}
-.guide .gt{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px}
-.guide .gd{font-size:11px;color:var(--muted);margin:6px 0 10px;line-height:1.5}
-.guide .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.guide .tags span{font-size:10.5px;background:#eef2ff;color:#4338ca;border-radius:999px;padding:3px 9px;font-weight:600}
-.guide .imp{width:100%;border:1px solid #c7d2fe;background:#fff;color:var(--indigo);font-size:12px;font-weight:700;border-radius:12px;padding:8px;cursor:pointer;font-family:inherit}
+.guide{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:22px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden;transition:all .25s}
+.guide::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,#0ea5e9,#6366f1,#a855f7,#2fd374);opacity:.85}
+.guide:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(15,23,42,.12)}
+.guide .gt{font-size:15px;font-weight:900;display:flex;align-items:center;gap:8px}
+.guide .star{font-size:11px;color:#f59e0b;margin-left:auto}
+.guide .gd{font-size:12px;color:var(--muted);margin:8px 0 12px;line-height:1.6}
+.guide .days2{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:12px}
+.guide .days2 span{font-size:11px;background:rgba(238,242,255,.9);color:#3730a3;border-radius:10px;padding:6px 10px;font-weight:600}
+.guide .imp{width:100%;border:1px solid rgba(196,181,253,.9);background:rgba(255,255,255,.9);color:var(--indigo);font-size:12.5px;font-weight:800;border-radius:14px;padding:10px;cursor:pointer;font-family:inherit;transition:all .2s}
 .guide .imp:hover{background:#eef2ff}
 
 /* ===== 共创页 ===== */
-.room{border:1.5px dashed #a5b4fc;background:linear-gradient(180deg,#eef2ff,#fff);border-radius:20px;padding:18px;text-align:center;margin-bottom:14px}
-.room .ric{font-size:30px}
-.room h3{font-size:15px;font-weight:800;margin:6px 0 4px}
-.room p{font-size:12px;color:var(--muted);margin-bottom:12px}
+.roomtop{display:flex;align-items:center;gap:14px;padding:6px 2px 14px}
+.avatars{display:flex}
+.avatars .av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;border:2.5px solid #fff;margin-left:-9px;box-shadow:0 4px 10px rgba(15,23,42,.12);background:linear-gradient(135deg,#e0e7ff,#fce7f3)}
+.avatars .av:first-child{margin-left:0}
+.roomtop .rinfo .rc{font-size:14px;font-weight:900}
+.roomtop .rinfo .ro{font-size:11px;color:var(--muted)}
+.live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:#059669;background:#d1fae5;border-radius:999px;padding:4px 11px}
+.live .d{width:6px;height:6px;border-radius:50%;background:#10b981;animation:pulse 1.2s infinite}
+.vote{display:flex;align-items:center;gap:12px;padding:12px;border-radius:16px;background:rgba(255,255,255,.75);margin-bottom:10px;border:1px solid var(--line)}
+.vote .vem{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:21px;flex:0 0 auto}
+.vote .vnm{font-size:13.5px;font-weight:800}
+.vote .vbar{height:7px;border-radius:99px;background:#e2e8f0;overflow:hidden;margin-top:7px}
+.vote .vbar i{display:block;height:100%;border-radius:99px;background:var(--grad);transition:width .5s cubic-bezier(.2,1,.3,1)}
+.vote .vbtns{margin-left:auto;display:flex;flex-direction:column;gap:5px}
+.vote .vbtns button{border:none;width:34px;height:26px;border-radius:10px;font-size:13px;font-weight:900;cursor:pointer;font-family:inherit;transition:all .15s}
+.vote .vbtns .up{background:#d1fae5;color:#059669}
+.vote .vbtns .dn{background:#fee2e2;color:#dc2626}
+.vote .vbtns button:active{transform:scale(.88)}
+.chat{display:flex;flex-direction:column;gap:10px;max-height:210px;overflow-y:auto;padding-right:4px}
+.msg{display:flex;gap:9px;align-items:flex-start;animation:slidein .3s ease}
+@keyframes slidein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg .ma{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex:0 0 auto;background:linear-gradient(135deg,#e0e7ff,#fce7f3)}
+.msg .mb{background:rgba(255,255,255,.85);border-radius:14px 14px 14px 4px;padding:8px 12px;font-size:12.5px;max-width:80%}
+.msg .mn{font-size:10px;color:#94a3b8;margin-bottom:2px;font-weight:700}
+.chatbar{display:flex;gap:8px;margin-top:12px}
+.chatbar input{flex:1}
 
 /* ===== 设置页 ===== */
-.setrow{display:flex;align-items:center;gap:12px;padding:13px 2px;border-bottom:1px solid var(--line)}
+.setrow{display:flex;align-items:center;gap:14px;padding:14px 2px;border-bottom:1px solid rgba(148,163,184,.2)}
 .setrow:last-child{border-bottom:none}
-.setrow .sic{width:36px;height:36px;border-radius:12px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:17px}
-.setrow .st{font-size:14px;font-weight:700}
-.setrow .sd{font-size:11px;color:var(--muted);margin-top:1px}
-.setrow .go{margin-left:auto;color:#94a3b8;font-size:16px}
+.setrow .sic{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#e0e7ff,#fce7f3);display:flex;align-items:center;justify-content:center;font-size:19px}
+.setrow .st{font-size:14px;font-weight:800}
+.setrow .sd{font-size:11px;color:var(--muted);margin-top:2px}
+.setrow .go{margin-left:auto;color:#94a3b8;font-size:18px}
+.switch{position:relative;width:46px;height:26px;margin-left:auto;flex:0 0 auto}
+.switch input{opacity:0;width:0;height:0}
+.switch .sl{position:absolute;inset:0;border-radius:99px;background:#cbd5e1;transition:.25s;cursor:pointer}
+.switch .sl::before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.25s;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.switch input:checked + .sl{background:var(--grad)}
+.switch input:checked + .sl::before{transform:translateX(20px)}
 
-/* ===== 底部导航 ===== */
-.tabbar{flex:0 0 auto;display:flex;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:30}
-.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:none;font-family:inherit;color:#94a3b8;cursor:pointer;padding:4px 0;border-radius:12px;transition:color .15s;position:relative}
-.tab span{font-size:19px;line-height:1;filter:grayscale(.4);opacity:.75;transition:all .15s}
-.tab em{font-style:normal;font-size:11px;font-weight:600}
-.tab.active{color:var(--indigo)}
-.tab.active span{filter:none;opacity:1;transform:translateY(-1px)}
-.tab.active em{font-weight:800}
-.tab.active::before{content:"";position:absolute;top:-9px;width:20px;height:3px;border-radius:99px;background:var(--grad);opacity:0;transition:opacity .15s}
-.tab.active::before{opacity:1}
-
-/* ===== 翻页指示点 ===== */
-.dots{position:fixed;left:0;right:0;bottom:calc(74px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:6px;z-index:25;pointer-events:none}
-.dots i{width:6px;height:6px;border-radius:99px;background:#cbd5e1;transition:all .25s}
-.dots i.on{width:18px;background:var(--grad)}
-
-/* ===== Toast ===== */
-.toast{position:fixed;left:50%;top:60px;transform:translateX(-50%) translateY(-12px);background:#0f172a;color:#fff;font-size:13px;font-weight:600;padding:10px 18px;border-radius:14px;box-shadow:0 10px 30px rgba(15,23,42,.25);opacity:0;transition:all .25s;z-index:99;pointer-events:none;max-width:86vw;text-align:center}
+/* ===== 指示点 / Toast ===== */
+.dots{position:fixed;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:6px;z-index:40;pointer-events:none}
+@media(min-width:768px){.dots{display:none}}
+.dots i{width:6px;height:6px;border-radius:99px;background:rgba(148,163,184,.6);transition:all .3s}
+.dots i.on{width:22px;background:var(--grad)}
+.toast{position:fixed;left:50%;top:calc(70px);transform:translateX(-50%) translateY(-10px);background:rgba(15,23,42,.92);color:#fff;font-size:13px;font-weight:700;padding:11px 20px;border-radius:999px;box-shadow:0 12px 34px rgba(15,23,42,.3);opacity:0;transition:all .28s;z-index:99;pointer-events:none;max-width:88vw;text-align:center;backdrop-filter:blur(8px)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.empty{text-align:center;color:var(--muted);font-size:13px;padding:30px 0}
+.empty{text-align:center;color:var(--muted);font-size:13px;padding:26px 0}
 .empty .ic{font-size:34px;margin-bottom:8px}
-.section-title{font-size:16px;font-weight:800;margin:2px 0 12px;display:flex;align-items:center;gap:8px}
-.section-title small{font-size:11px;color:var(--muted);font-weight:500;margin-left:auto}
+@media(prefers-reduced-motion:reduce){.blob,.hero h1,.map .route,.map .mk{animation:none}}
 </style>
 </head>
 <body>
+<div class="bgfx"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="blob b5"></div><div class="blob b6"></div></div>
 <div id="app">
 
-  <header class="topbar">
-    <span class="logo">🗺</span>
-    <h1>途迹 TripMap</h1>
-    <span class="hint">左右滑动切换页面 →</span>
-  </header>
+  <nav class="topnav" id="topnav">
+    <button class="tnav active" data-page="page-home"><span class="ic">🏠</span><span class="lb">首页</span></button>
+    <button class="tnav" data-page="page-plan"><span class="ic">🗺</span><span class="lb">行程</span></button>
+    <button class="tnav" data-page="page-guide"><span class="ic">📚</span><span class="lb">攻略</span></button>
+    <button class="tnav" data-page="page-collab"><span class="ic">👥</span><span class="lb">共创</span></button>
+    <button class="tnav" data-page="page-settings"><span class="ic">⚙️</span><span class="lb">设置</span></button>
+  </nav>
 
   <main id="pages" class="pages">
 
     <!-- ===== 首页 ===== -->
     <section class="page" id="page-home">
       <div class="hero">
-        <span class="badge">🤖 AI 驱动的旅游攻略工具</span>
-        <h1>途迹 <span>TripMap</span></h1>
+        <span class="badge"><span class="dot"></span> AI 驱动的旅游攻略工具</span>
+        <h1>途迹 <span class="hl">TripMap</span></h1>
         <p>让每一次出发，都变得从容且自在 🧭</p>
       </div>
 
-      <div class="card" style="margin-top:16px">
+      <div class="card" style="margin-top:18px">
         <h3>📋 行程基本信息</h3>
-        <div class="field-label">目的地</div>
+        <div class="field-label">📍 目的地</div>
         <input class="input" id="dest" placeholder="例：成都、京都、巴黎" value="成都">
-        <div class="field-label" style="margin-top:12px">行程天数</div>
+        <div class="field-label" style="margin-top:14px">🗓 行程天数</div>
         <div class="chips" id="dayChips">
           <button class="chip" data-days="2">2 天</button>
           <button class="chip" data-days="3">3 天</button>
@@ -156,9 +253,9 @@ body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Micro
       <div class="card">
         <h3>📝 粘贴小红书笔记</h3>
         <textarea class="input" id="notes" rows="6" placeholder="把小红书笔记、评论文字复制粘贴到这里...&#10;&#10;可以多次粘贴，AI 分析结果会追加到素材库。"></textarea>
-        <div style="display:flex;gap:10px;margin-top:12px">
-          <button class="btn ghost" id="fillExample" style="flex:0 0 auto;width:auto;padding:12px 18px">填入示例</button>
-          <button class="btn" id="analyzeBtn">✨ AI 一键分析，生成行程规划</button>
+        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+          <button class="btn ghost small" id="fillExample" style="flex:0 0 auto">填入示例</button>
+          <button class="btn" id="analyzeBtn" style="flex:1 1 auto;min-width:200px;width:auto">✨ AI 一键分析，生成行程规划</button>
         </div>
       </div>
 
@@ -168,36 +265,49 @@ body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Micro
         <div class="feature"><div class="ic">📅</div><div class="t">灵活规划</div><div class="d">拖拽排序 AI 优化</div></div>
       </div>
 
-      <button class="btn ghost" id="aiChat">AI 推荐 · 问我推荐地点、美食、攻略</button>
+      <button class="btn green" id="aiChat">💬 AI 推荐 · 问我推荐地点、美食、攻略</button>
+
+      <div class="stats">
+        <div><div class="v">1,200+</div><div class="k">收录目的地</div></div>
+        <div><div class="v">8 类</div><div class="k">地点分类</div></div>
+        <div><div class="v">3 套</div><div class="k">攻略方案</div></div>
+        <div><div class="v">99%</div><div class="k">识别准确率</div></div>
+      </div>
     </section>
 
     <!-- ===== 行程 ===== -->
     <section class="page" id="page-plan">
-      <div class="section-title">🗺 行程规划<small>左右滑动看其他页面</small></div>
+      <div class="section-title">🗺 行程规划<small>拖拽地点自由安排</small></div>
       <div class="daytabs" id="dayTabs">
-        <button class="chip active">全部</button>
-        <button class="chip">Day 1</button>
-        <button class="chip">Day 2</button>
-        <button class="chip">Day 3</button>
-        <button class="chip">Day 4</button>
+        <button class="chip active" data-day="all">全部</button>
+        <button class="chip" data-day="1">Day 1</button>
+        <button class="chip" data-day="2">Day 2</button>
+        <button class="chip" data-day="3">Day 3</button>
+        <button class="chip" data-day="4">Day 4</button>
       </div>
 
-      <div class="card" style="padding:6px 14px">
-        <div class="place"><span class="em cat-景点">🏛</span><div><div class="nm">宽窄巷子</div><div class="sm">成都著名历史文化街区，体验老成都风情</div></div><span class="tg">免费</span></div>
-        <div class="place"><span class="em cat-景点">🏛</span><div><div class="nm">大熊猫基地</div><div class="sm">近距离观看国宝大熊猫，必去</div></div><span class="tg">55元</span></div>
-        <div class="place"><span class="em cat-美食">🍜</span><div><div class="nm">马旺子川菜馆</div><div class="sm">地道川菜，水煮鱼和回锅肉必点</div></div><span class="tg">人均90</span></div>
-        <div class="place"><span class="em cat-住宿">🏨</span><div><div class="nm">春熙路亚朵酒店</div><div class="sm">市中心出行方便，近地铁 2 号线</div></div><span class="tg">¥420</span></div>
-        <div class="place"><span class="em cat-交通">🚗</span><div><div class="nm">地铁 + 打车</div><div class="sm">景区间打车约 10-20 分钟</div></div><span class="tg">贴士</span></div>
+      <div class="card">
+        <h3>🧺 素材库 <span style="font-size:11px;color:var(--muted);font-weight:500">（拖到下方任意 Day）</span></h3>
+        <div class="mats" id="mats"></div>
       </div>
 
-      <div class="map">
-        <div class="road"></div>
-        <span class="marker" style="left:22%;top:36%">📌<b>宽窄巷子</b></span>
-        <span class="marker" style="left:50%;top:26%">🐼<b>熊猫基地</b></span>
-        <span class="marker" style="left:74%;top:46%">🍜<b>春熙路</b></span>
-        <span class="attr">© 2026 AutoNavi</span>
+      <div class="card">
+        <h3>📅 每日行程</h3>
+        <div class="days" id="days"></div>
       </div>
-      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">分析笔记后，地点将自动标注在地图上</p>
+
+      <div class="card" style="padding:14px">
+        <div class="map">
+          <svg viewBox="0 0 400 220" preserveAspectRatio="none">
+            <path class="route" d="M60,150 C120,110 150,60 205,70 C255,80 280,130 335,110"></path>
+          </svg>
+          <span class="mk" style="left:18%;top:34%">📌<b>宽窄巷子</b></span>
+          <span class="mk" style="left:52%;top:24%">🐼<b>熊猫基地</b></span>
+          <span class="mk" style="left:82%;top:36%">🍜<b>春熙路</b></span>
+          <span class="attr">© 2026 AutoNavi</span>
+        </div>
+        <div class="hint">分析笔记后，地点将自动标注在地图上 · 虚线为路线连线</div>
+      </div>
     </section>
 
     <!-- ===== 攻略 ===== -->
@@ -205,72 +315,90 @@ body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Micro
       <div class="section-title">📚 攻略库<small>AI 为你生成多套参考行程</small></div>
 
       <div class="guide">
-        <div class="gt">🏛 经典打卡线</div>
-        <div class="gd">4 天 · 覆盖成都必去地标，节奏适中，适合第一次来成都的朋友。</div>
-        <div class="tags"><span>Day1 宽窄巷子→锦里</span><span>Day2 熊猫基地→文殊院</span><span>Day3 都江堰一日</span><span>Day4 人民公园→太古里</span></div>
+        <div class="gt">🏛 经典打卡线 <span class="star">⭐ 4.9 · 12.8k 人参考</span></div>
+        <div class="gd">4 天覆盖成都必去地标，节奏适中，第一次来成都首选。</div>
+        <div class="days2"><span>Day1 宽窄巷子 → 人民公园</span><span>Day2 熊猫基地 → 文殊院</span><span>Day3 都江堰一日游</span><span>Day4 春熙路 → 太古里</span></div>
         <button class="imp">一键导入地点到素材库</button>
       </div>
 
       <div class="guide">
-        <div class="gt">🍜 美食探店线</div>
-        <div class="gd">4 天 · 以吃为主线，串起苍蝇馆子、夜市与茶馆，适合吃货。</div>
-        <div class="tags"><span>玉林路小酒馆</span><span>建设路小吃街</span><span>九眼桥夜市</span><span>鹤鸣茶社</span></div>
+        <div class="gt">🍜 美食探店线 <span class="star">⭐ 4.8 · 9.6k 人参考</span></div>
+        <div class="gd">以吃为主线，串起苍蝇馆子、夜市与茶馆，纯吃货路线。</div>
+        <div class="days2"><span>Day1 马旺子川菜 → 建设路小吃</span><span>Day2 玉林路小酒馆 → 九眼桥</span><span>Day3 鹤鸣茶社 → 火锅</span><span>Day4 川大周边 → 太古里甜品</span></div>
         <button class="imp">一键导入地点到素材库</button>
       </div>
 
       <div class="guide">
-        <div class="gt">👨‍👩‍👧 亲子休闲线</div>
-        <div class="gd">4 天 · 节奏舒缓，熊猫、科技馆、公园为主，适合带娃家庭。</div>
-        <div class="tags"><span>熊猫基地半日</span><span>成都科技馆</span><span>人民公园</span><span>天府广场</span></div>
+        <div class="gt">👨‍👩‍👧 亲子休闲线 <span class="star">⭐ 4.7 · 6.1k 人参考</span></div>
+        <div class="gd">节奏舒缓，熊猫、科技馆、公园为主，带娃家庭友好。</div>
+        <div class="days2"><span>Day1 熊猫基地半日</span><span>Day2 成都科技馆 → 天府广场</span><span>Day3 人民公园 → 宽窄巷子</span><span>Day4 欢乐田园 → 返程</span></div>
         <button class="imp">一键导入地点到素材库</button>
       </div>
 
-      <button class="btn">✨ 立即生成攻略</button>
+      <div class="guide">
+        <div class="gt">📷 人文摄影线 <span class="star">⭐ 4.6 · 3.2k 人参考</span></div>
+        <div class="gd">古建、茶馆、老街，专为摄影爱好者定制的光影路线。</div>
+        <div class="days2"><span>Day1 文殊院晨光 → 宽窄巷子</span><span>Day2 安仁古镇一日</span><span>Day3 望江楼 → 九眼桥夜景</span><span>Day4 人民公园茶馆 → 东郊记忆</span></div>
+        <button class="imp">一键导入地点到素材库</button>
+      </div>
+
+      <button class="btn green">✨ 立即生成专属攻略</button>
     </section>
 
     <!-- ===== 共创 ===== -->
     <section class="page" id="page-collab">
       <div class="section-title">👥 多人共创<small>和朋友一起规划行程</small></div>
-      <p style="font-size:12px;color:var(--muted);margin:-6px 0 16px">和朋友一起规划行程，投票选出最想去的地方</p>
 
-      <div class="room">
-        <div class="ric">🏠</div>
-        <h3>创建房间</h3>
-        <p>创建一个新房间，邀请朋友加入</p>
-        <button class="btn" id="createRoom">✨ 创建房间</button>
+      <div class="card">
+        <div class="roomtop">
+          <div class="avatars">
+            <span class="av">🙋</span><span class="av">😎</span><span class="av">🧳</span><span class="av">🐱</span>
+          </div>
+          <div class="rinfo">
+            <div class="rc">房间号 <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">OLZUY4</span></div>
+            <div class="ro">4 人在线 · 共享素材库</div>
+          </div>
+          <span class="live" style="margin-left:auto"><span class="d"></span> 在线</span>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px">和朋友一起投票，选出最想去的地方 🗳</p>
+        <div id="votes"></div>
+        <button class="btn small ghost" id="addVote" style="width:100%;margin-top:6px">➕ 发起新投票</button>
       </div>
 
       <div class="card">
-        <h3>🔗 加入房间</h3>
-        <input class="input" id="roomCode" placeholder="输入邀请码" maxlength="6" style="text-transform:uppercase">
-        <button class="btn ghost" id="joinRoom" style="margin-top:12px">加入</button>
+        <h3>💬 讨论区</h3>
+        <div class="chat" id="chat"></div>
+        <div class="chatbar">
+          <input class="input" id="chatInput" placeholder="说点什么..." style="min-width:0">
+          <button class="btn small" id="sendChat">发送</button>
+        </div>
       </div>
-      <div class="empty" style="padding:14px 0 0">
-        <div class="ic">🔔</div>
-        创建房间后可邀请朋友加入<br>（静态演示：房间/成员/投票为前端模拟）
-      </div>
+
+      <div class="empty"><div class="ic">🔔</div>演示数据：房间 / 成员 / 投票均为前端模拟</div>
     </section>
 
     <!-- ===== 设置 ===== -->
     <section class="page" id="page-settings">
       <div class="section-title">⚙️ 设置<small>API Key 管理、偏好设置等</small></div>
-      <div class="card" style="padding:6px 14px">
+      <div class="card" style="padding:6px 16px">
         <div class="setrow"><span class="sic">🔑</span><div><div class="st">大模型 API Key</div><div class="sd">用于笔记分析、攻略生成、AI 对话</div></div><span class="go">›</span></div>
         <div class="setrow"><span class="sic">🗺</span><div><div class="st">高德地图 Key</div><div class="sd">用于地图展示与路线规划</div></div><span class="go">›</span></div>
         <div class="setrow"><span class="sic">🎨</span><div><div class="st">主题偏好</div><div class="sd">浅色 / 深色 / 跟随系统</div></div><span class="go">›</span></div>
+        <div class="setrow"><span class="sic">🌙</span><div><div class="st">深色模式</div><div class="sd">切换深色背景</div></div><label class="switch"><input type="checkbox" id="darkSwitch"><span class="sl"></span></label></div>
+        <div class="setrow"><span class="sic">🔔</span><div><div class="st">推送提醒</div><div class="sd">行程变更时通知我</div></div><label class="switch"><input type="checkbox" checked id="notifySwitch"><span class="sl"></span></label></div>
         <div class="setrow"><span class="sic">🗑</span><div><div class="st">清除本地数据</div><div class="sd">清空素材库与行程记录</div></div><span class="go">›</span></div>
-        <div class="setrow"><span class="sic">ℹ️</span><div><div class="st">关于</div><div class="sd">途迹 TripMap · v0.1 静态演示版</div></div><span class="go">›</span></div>
+        <div class="setrow"><span class="sic">ℹ️</span><div><div class="st">关于</div><div class="sd">途迹 TripMap · v0.2 炫彩版</div></div><span class="go">›</span></div>
       </div>
     </section>
 
   </main>
 
-  <nav class="tabbar">
-    <button class="tab active" data-page="page-home"><span>🏠</span><em>首页</em></button>
-    <button class="tab" data-page="page-plan"><span>🗺</span><em>行程</em></button>
-    <button class="tab" data-page="page-guide"><span>📚</span><em>攻略</em></button>
-    <button class="tab" data-page="page-collab"><span>👥</span><em>共创</em></button>
-    <button class="tab" data-page="page-settings"><span>⚙️</span><em>设置</em></button>
+  <nav class="botnav" id="botnav">
+    <button class="bnav active" data-page="page-home"><span class="ic">🏠</span><span class="lb">首页</span></button>
+    <button class="bnav" data-page="page-plan"><span class="ic">🗺</span><span class="lb">行程</span></button>
+    <button class="bnav" data-page="page-guide"><span class="ic">📚</span><span class="lb">攻略</span></button>
+    <button class="bnav" data-page="page-collab"><span class="ic">👥</span><span class="lb">共创</span></button>
+    <button class="bnav" data-page="page-settings"><span class="ic">⚙️</span><span class="lb">设置</span></button>
   </nav>
 
   <div class="dots" id="dots"></div>
@@ -280,7 +408,6 @@ body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Micro
 <script>
 (function(){
   var pages=document.getElementById('pages'),
-      tabs=Array.prototype.slice.call(document.querySelectorAll('.tab')),
       pageEls=Array.prototype.slice.call(document.querySelectorAll('.page')),
       dots=document.getElementById('dots'),
       toast=document.getElementById('toast'),
@@ -291,23 +418,19 @@ body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Micro
 
   function idx(){var w=pages.clientWidth||1;return Math.max(0,Math.min(pageEls.length-1,Math.round(pages.scrollLeft/w)));}
   function go(i){i=Math.max(0,Math.min(pageEls.length-1,i));pages.scrollTo({left:i*pages.clientWidth,behavior:'smooth'});}
-  function paint(){var i=idx();tabs.forEach(function(t,k){t.classList.toggle('active',k===i);});dotEls.forEach(function(d,k){d.className=k===i?'on':'';});}
-
+  function paint(){var i=idx();['tnav','bnav'].forEach(function(cls){Array.prototype.slice.call(document.querySelectorAll('.'+cls)).forEach(function(t,k){t.classList.toggle('active',k===i);});});dotEls.forEach(function(d,k){d.className=k===i?'on':'';});}
   pages.addEventListener('scroll',paint,{passive:true});
   window.addEventListener('resize',paint);
+  Array.prototype.slice.call(document.querySelectorAll('.tnav,.bnav')).forEach(function(t){t.addEventListener('click',function(){go(pageEls.indexOf(document.getElementById(t.dataset.page)));});});
 
-  tabs.forEach(function(t){t.addEventListener('click',function(){go(pageEls.indexOf(document.getElementById(t.dataset.page)));});});
-
-  // 键盘 ← →
   document.addEventListener('keydown',function(e){
     if(e.key==='ArrowRight')go(idx()+1);
     else if(e.key==='ArrowLeft')go(idx()-1);
   });
 
-  // 桌面端鼠标拖拽横滑
   var down=false,startX=0,startSL=0,moved=false;
   pages.addEventListener('pointerdown',function(e){
-    if(e.pointerType!=='mouse')return;
+    if(e.pointerType!=='mouse'||e.target.closest('.place'))return;
     down=true;moved=false;startX=e.clientX;startSL=pages.scrollLeft;
     try{pages.setPointerCapture(e.pointerId);}catch(_){}
   });
@@ -318,23 +441,20 @@ body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Micro
     pages.scrollLeft=startSL-dx;
   });
   function up(){down=false;}
-  pages.addEventListener('pointerup',up);
-  pages.addEventListener('pointercancel',up);
+  pages.addEventListener('pointerup',up);pages.addEventListener('pointercancel',up);
   pages.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
 
-  // 滚轮：纵向滚轮映射为横向翻页，页面内部还能竖向滚动
   pages.addEventListener('wheel',function(e){
     if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
     var cur=pageEls[idx()], can=cur.scrollHeight>cur.clientHeight+1,
         atTop=cur.scrollTop<=0, atBottom=cur.scrollTop+cur.clientHeight>=cur.scrollHeight-1;
     if(can&&!((atTop&&e.deltaY<0)||(atBottom&&e.deltaY>0)))return;
-    e.preventDefault();
-    pages.scrollLeft+=e.deltaY;
+    e.preventDefault();pages.scrollLeft+=e.deltaY;
   },{passive:false});
 
-  // 演示交互
   function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(function(){toast.classList.remove('show');},2200);}
 
+  /* ===== 首页交互 ===== */
   var chips=Array.prototype.slice.call(document.querySelectorAll('#dayChips .chip'));
   chips.forEach(function(c){c.addEventListener('click',function(){chips.forEach(function(x){x.classList.remove('active');});c.classList.add('active');});});
 
@@ -342,34 +462,250 @@ body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Micro
     document.getElementById('notes').value='成都4天3晚攻略！\nDay1：宽窄巷子拍照超出片，晚上去锦里看夜景，小吃超多～\nDay2：大熊猫基地一定要早上去，熊猫宝宝超可爱！下午文殊院吃素斋。\nDay3：都江堰一日游，水利工程很震撼。\nDay4：人民公园鹤鸣茶社喝盖碗茶，下午太古里逛街买买买。\n住宿推荐春熙路附近，出行方便。\n美食：马旺子川菜馆、玉林路小酒馆、建设路小吃街，人均都不贵！';
     showToast('✅ 已填入示例笔记');
   });
-
   var ab=document.getElementById('analyzeBtn');
   ab.addEventListener('click',function(){
     var v=document.getElementById('notes').value.trim();
     if(!v){showToast('⚠️ 请先粘贴笔记内容');return;}
     ab.disabled=true;ab.textContent='⏳ AI 分析中…';
-    setTimeout(function(){ab.disabled=false;ab.textContent='✨ AI 一键分析，生成行程规划';showToast('✅ 分析完成，已生成 6 个地点');go(1);},1200);
+    setTimeout(function(){ab.disabled=false;ab.textContent='✨ AI 一键分析，生成行程规划';showToast('✅ 分析完成，已生成 16 个地点');go(1);},1200);
   });
+  document.getElementById('aiChat').addEventListener('click',function(){showToast('💬 AI：宽窄巷子、熊猫基地、都江堰最值得去（演示）');});
 
-  document.getElementById('aiChat').addEventListener('click',function(){showToast('💬 AI 推荐：宽窄巷子、熊猫基地、都江堰（演示）');});
+  /* ===== 行程数据 ===== */
+  var CATS={
+    '景点':{bg:'#e0f2fe',ic:'🏛'},
+    '美食':{bg:'#fff7ed',ic:'🍜'},
+    '住宿':{bg:'#f0f9ff',ic:'🏨'},
+    '购物':{bg:'#fdf4ff',ic:'🛍'},
+    '交通':{bg:'#f5f3ff',ic:'🚇'},
+    '贴士':{bg:'#fef9c3',ic:'🎫'}
+  };
+  var places=[
+    {id:'p1',name:'宽窄巷子',cat:'景点',emoji:'🏛',summary:'成都著名历史文化街区，体验老成都风情',price:'免费',tip:'建议早去人少',rating:4,assignedDay:null},
+    {id:'p2',name:'大熊猫基地',cat:'景点',emoji:'🐼',summary:'近距离观看国宝大熊猫，必去',price:'55元',tip:'早上熊猫活跃',rating:5,assignedDay:null},
+    {id:'p3',name:'武侯祠',cat:'景点',emoji:'🏯',summary:'三国文化圣地，红墙竹影超好拍',price:'50元',tip:'与锦里紧邻',rating:4,assignedDay:null},
+    {id:'p4',name:'都江堰',cat:'景点',emoji:'⛰',summary:'两千多年水利工程，震撼必看',price:'80元',tip:'距市区1小时',rating:5,assignedDay:null},
+    {id:'p5',name:'文殊院',cat:'景点',emoji:'🛕',summary:'千年古刹，宁静禅意，素斋有名',price:'免费',tip:'可尝素斋',rating:4,assignedDay:null},
+    {id:'p6',name:'马旺子川菜馆',cat:'美食',emoji:'🍜',summary:'地道川菜，水煮鱼回锅肉必点',price:'人均90',tip:'饭点排队',rating:4,assignedDay:null},
+    {id:'p7',name:'建设路小吃街',cat:'美食',emoji:'🍢',summary:'小吃天堂，糖油果子蛋烘糕',price:'人均40',tip:'下午开始热闹',rating:4,assignedDay:null},
+    {id:'p8',name:'鹤鸣茶社',cat:'美食',emoji:'🍵',summary:'人民公园百年茶馆，喝盖碗茶',price:'人均30',tip:'下午去更有氛围',rating:5,assignedDay:null},
+    {id:'p9',name:'玉林路小酒馆',cat:'美食',emoji:'🍻',summary:'赵雷歌里的成都，小酒馆微醺',price:'人均80',tip:'晚上营业',rating:4,assignedDay:null},
+    {id:'p10',name:'春熙路亚朵酒店',cat:'住宿',emoji:'🏨',summary:'市中心出行方便，近地铁2号线',price:'¥420/晚',tip:'提前订便宜',rating:4,assignedDay:null},
+    {id:'p11',name:'太古里民宿',cat:'住宿',emoji:'🛏',summary:'时尚街区里的温馨小窝',price:'¥360/晚',tip:'含早餐',rating:4,assignedDay:null},
+    {id:'p12',name:'太古里',cat:'购物',emoji:'🛍',summary:'时尚潮流地标，购物美食聚集',price:'免费',tip:'晚上灯光美',rating:4,assignedDay:null},
+    {id:'p13',name:'春熙路步行街',cat:'购物',emoji:'👟',summary:'百年金街，逛街必去',price:'免费',tip:'地铁直达',rating:4,assignedDay:null},
+    {id:'p14',name:'地铁+打车',cat:'交通',emoji:'🚇',summary:'景区间打车约10-20分钟',price:'—',tip:'优先地铁',rating:4,assignedDay:null},
+    {id:'p15',name:'门票预约提醒',cat:'贴士',emoji:'🎫',summary:'熊猫基地/都江堰需提前预约',price:'—',tip:'节假日紧张',rating:4,assignedDay:null},
+    {id:'p16',name:'天气穿衣建议',cat:'贴士',emoji:'☀️',summary:'成都气候湿润，早晚温差大',price:'—',tip:'带薄外套',rating:4,assignedDay:null}
+  ];
+  places[0].assignedDay=1;places[5].assignedDay=1;places[7].assignedDay=4;
+  places[1].assignedDay=2;places[6].assignedDay=2;
+  places[4].assignedDay=3;places[9].assignedDay=3;places[11].assignedDay=3;
 
+  var mats=document.getElementById('mats'),daysEl=document.getElementById('days');
+  var TOTAL_DAYS=4;
+
+  function stars(r){var s='';for(var i=0;i<5;i++)s+=i<r?'★':'☆';return s;}
+
+  function placeHTML(p){
+    var c=CATS[p.cat]||{bg:'#f1f5f9',ic:'📌'};
+    return '<div class="place" data-id="'+p.id+'" draggable="false">'+
+      '<span class="em" style="background:'+c.bg+'">'+p.emoji+'</span>'+
+      '<div style="flex:1;min-width:0">'+
+        '<div class="nm">'+p.name+' <span style="font-size:10px;color:#f59e0b;letter-spacing:-1px">'+stars(p.rating)+'</span></div>'+
+        '<div class="sm">'+p.summary+'</div>'+
+        '<div class="meta">'+
+          '<span class="tag cat">'+c.ic+' '+p.cat+'</span>'+
+          '<span class="tag price">'+p.price+'</span>'+
+          (p.tip!=='—'?'<span class="tag tip">💡 '+p.tip+'</span>':'')+
+          (p.assignedDay?'<span class="tag day">Day '+p.assignedDay+'</span>':'')+
+        '</div>'+
+      '</div>'+
+      '<span style="color:#cbd5e1;font-size:13px">⠿</span>'+
+    '</div>';
+  }
+
+  function render(){
+    mats.innerHTML='';
+    places.forEach(function(p){if(p.assignedDay===null)mats.insertAdjacentHTML('beforeend',placeHTML(p));});
+    daysEl.innerHTML='';
+    for(var d=1;d<=TOTAL_DAYS;d++){
+      var list=places.filter(function(p){return p.assignedDay===d;});
+      var html='<div class="daycol" data-day="'+d+'"><div class="dh"><span class="dn">Day '+d+'</span><span class="dc">'+list.length+' 项</span></div><div class="dropbody">'+
+        (list.length?'':'<div class="empty">拖拽地点到这里</div>')+
+        list.map(placeHTML).join('')+'<div class="ins"></div></div></div>';
+      daysEl.insertAdjacentHTML('beforeend',html);
+    }
+    bindDrag();
+  }
+
+  /* ===== 拖拽系统 ===== */
+  var dragItem=null,dragGhost=null,curOver=null,curIns=null;
+  function makeGhost(el){
+    var g=el.cloneNode(true);g.className='place dragghost';g.style.width=el.offsetWidth+'px';g.style.left='-9999px';g.style.top='-9999px';
+    document.body.appendChild(g);return g;
+  }
+  function placeIn(col,x,y){
+    var body=col.querySelector('.dropbody');
+    var ins=col.querySelector('.ins');
+    var items=body.querySelectorAll('.place');
+    for(var i=0;i<items.length;i++){
+      var r=items[i].getBoundingClientRect();
+      if(y<r.top+r.height/2){return {index:i,ins:ins};}
+    }
+    return {index:items.length,ins:ins};
+  }
+  function findDrop(x,y){
+    var cols=daysEl.querySelectorAll('.daycol');
+    for(var i=0;i<cols.length;i++){
+      var r=cols[i].getBoundingClientRect();
+      if(x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom){return {col:cols[i],inMat:false};}
+    }
+    var mr=mats.getBoundingClientRect();
+    if(x>=mr.left&&x<=mr.right&&y>=mr.top&&y<=mr.bottom){return {col:mats,inMat:true};}
+    return null;
+  }
+  function clearOver(){if(curOver){curOver.classList.remove('drag-over');curOver=null;}if(curIns){curIns.classList.remove('show');curIns=null;}}
+  function onDown(e){
+    var card=e.target.closest('.place');if(!card)return;
+    dragItem={id:card.dataset.id,el:card};
+    dragGhost=makeGhost(card);
+    card.classList.add('dragging');
+    try{card.setPointerCapture(e.pointerId);}catch(_){}
+    document.addEventListener('pointermove',onMove);
+    document.addEventListener('pointerup',onUp);
+    document.addEventListener('pointercancel',onUp);
+    e.preventDefault();
+  }
+  function onMove(e){
+    if(!dragItem)return;
+    dragGhost.style.left=(e.clientX+12)+'px';
+    dragGhost.style.top=(e.clientY+10)+'px';
+    clearOver();
+    var t=findDrop(e.clientX,e.clientY);
+    if(t){
+      t.col.classList.add('drag-over');curOver=t.col;
+      if(!t.inMat){
+        var pos=placeIn(t.col,e.clientX,e.clientY);
+        pos.ins.classList.add('show');curIns=pos.ins;
+      }
+      dragItem.targetCol=t.col;dragItem.targetInMat=t.inMat;
+    }else{dragItem.targetCol=null;dragItem.targetInMat=false;}
+  }
+  function onUp(){
+    if(!dragItem)return;
+    var item=dragItem;dragItem=null;
+    document.removeEventListener('pointermove',onMove);
+    document.removeEventListener('pointerup',onUp);
+    document.removeEventListener('pointercancel',onUp);
+    if(dragGhost){dragGhost.remove();dragGhost=null;}
+    clearOver();
+    var p=null;
+    for(var i=0;i<places.length;i++)if(places[i].id===item.id)p=places[i];
+    if(p&&item.targetCol){
+      if(item.targetInMat){
+        p.assignedDay=null;
+        showToast('↩️ '+p.name+' 已放回素材库');
+      }else{
+        var day=Number(item.targetCol.dataset.day);
+        if(p.assignedDay!==day){
+          p.assignedDay=day;
+          showToast('📅 '+p.name+' 已安排到 Day '+day);
+        }
+      }
+    }
+    item.el.classList.remove('dragging');
+    render();
+    var fresh=document.querySelector('.place[data-id="'+item.id+'"]');
+    if(fresh)fresh.classList.add('pop');
+    setTimeout(function(){if(fresh)fresh.classList.remove('pop');},500);
+  }
+  function bindDrag(){
+    Array.prototype.slice.call(document.querySelectorAll('#page-plan .place')).forEach(function(card){
+      if(card.__bound)return;card.__bound=true;
+      card.addEventListener('pointerdown',onDown);
+      card.addEventListener('click',function(e){
+        if(e.target.closest('.place')){card.classList.remove('pop');void card.offsetWidth;card.classList.add('pop');}
+      });
+    });
+  }
+
+  // Day 标签过滤
   var dayTabs=Array.prototype.slice.call(document.querySelectorAll('#dayTabs .chip'));
-  dayTabs.forEach(function(c){c.addEventListener('click',function(){dayTabs.forEach(function(x){x.classList.remove('active');});c.classList.add('active');});});
+  dayTabs.forEach(function(c){c.addEventListener('click',function(){
+    dayTabs.forEach(function(x){x.classList.remove('active');});c.classList.add('active');
+    var d=c.dataset.day;
+    Array.prototype.slice.call(daysEl.children).forEach(function(col){
+      col.style.display=(d==='all'||col.dataset.day===d)?'':'none';
+    });
+  });});
 
-  document.getElementById('createRoom').addEventListener('click',function(){
-    var code=Math.random().toString(36).substring(2,8).toUpperCase();
-    showToast('🏠 房间已创建，邀请码：'+code);
-  });
-  document.getElementById('joinRoom').addEventListener('click',function(){
-    var c=document.getElementById('roomCode').value.trim();
-    if(!c){showToast('⚠️ 请输入邀请码');return;}
-    showToast('🔗 已加入房间 '+c.toUpperCase()+'（演示）');
-  });
+  render();
 
+  /* ===== 攻略导入 ===== */
   Array.prototype.slice.call(document.querySelectorAll('.guide .imp')).forEach(function(b){
-    b.addEventListener('click',function(){showToast('✅ 已导入地点到素材库');});
+    b.addEventListener('click',function(){showToast('✅ 已导入该攻略地点到素材库');});
   });
   document.querySelector('#page-guide .btn').addEventListener('click',function(){showToast('✨ 攻略生成中…（演示）');});
+
+  /* ===== 共创交互 ===== */
+  var votes=[
+    {id:'v1',name:'宽窄巷子',emoji:'🏛',bg:'#e0f2fe',up:18,down:2,my:null},
+    {id:'v2',name:'都江堰',emoji:'⛰',bg:'#d1fae5',up:15,down:1,my:null},
+    {id:'v3',name:'建设路小吃街',emoji:'🍢',bg:'#fff7ed',up:12,down:4,my:null}
+  ];
+  function renderVotes(){
+    var max=Math.max.apply(null,votes.map(function(v){return v.up;}));
+    var el=document.getElementById('votes');
+    el.innerHTML=votes.map(function(v){
+      var w=Math.round(v.up/max*100);
+      return '<div class="vote" data-id="'+v.id+'">'+
+        '<span class="vem" style="background:'+v.bg+'">'+v.emoji+'</span>'+
+        '<div style="flex:1;min-width:0"><div class="vnm">'+v.name+'</div>'+
+        '<div class="vbar"><i style="width:'+w+'%"></i></div>'+
+        '<div style="font-size:10.5px;color:var(--muted);margin-top:4px">👍 '+v.up+' &nbsp; 👎 '+v.down+'</div></div>'+
+        '<div class="vbtns"><button class="up">👍</button><button class="dn">👎</button></div>'+
+      '</div>';
+    }).join('');
+    Array.prototype.slice.call(el.querySelectorAll('.vbtns button')).forEach(function(b){
+      b.addEventListener('click',function(){
+        var vid=b.parentElement.parentElement.dataset.id;
+        var v=votes.filter(function(x){return x.id===vid;})[0];
+        var isUp=b.classList.contains('up');
+        if(v.my===isUp){if(isUp)v.up--;else v.down--;v.my=null;}
+        else{if(v.my!==null){if(v.my)v.up--;else v.down--;}if(isUp)v.up++;else v.down++;v.my=isUp;}
+        renderVotes();showToast(isUp?'👍 +1':'👎 -1');
+      });
+    });
+  }
+  renderVotes();
+  document.getElementById('addVote').addEventListener('click',function(){showToast('➕ 已发起新投票（演示）');});
+
+  var msgs=[
+    {name:'小明',av:'😎',text:'都江堰一定要去！太震撼了'},
+    {name:'旅行达人Amy',av:'🧳',text:'建议Day2早点去熊猫基地，人少'},
+    {name:'我',av:'🙋',text:'晚上去建设路吃小吃怎么样？'}
+  ];
+  function renderChat(){
+    var el=document.getElementById('chat');
+    el.innerHTML=msgs.map(function(m){
+      return '<div class="msg"><span class="ma">'+m.av+'</span><div><div class="mn">'+m.name+'</div><div class="mb">'+m.text+'</div></div></div>';
+    }).join('');
+    el.scrollTop=el.scrollHeight;
+  }
+  renderChat();
+  function send(){
+    var inp=document.getElementById('chatInput'),v=inp.value.trim();
+    if(!v)return;
+    msgs.push({name:'我',av:'🙋',text:v});inp.value='';renderChat();
+  }
+  document.getElementById('sendChat').addEventListener('click',send);
+  document.getElementById('chatInput').addEventListener('keydown',function(e){if(e.key==='Enter')send();});
+
+  /* ===== 设置 ===== */
+  document.getElementById('darkSwitch').addEventListener('change',function(e){
+    showToast(e.target.checked?'🌙 深色模式已开启（演示）':'☀️ 已切回浅色');
+  });
 })();
 </script>
 </body>
