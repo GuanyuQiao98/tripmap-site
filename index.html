@@ -1,0 +1,376 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>途迹 TripMap · 左右滑动版</title>
+<style>
+:root{
+  --sky:#0ea5e9; --indigo:#6366f1; --cyan:#06b6d4; --ink:#0f172a; --muted:#64748b;
+  --line:#e2e8f0; --bg:#f8fafc; --card:#ffffff;
+  --grad:linear-gradient(135deg,#0ea5e9,#6366f1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg)}
+#app{display:flex;flex-direction:column;height:100%}
+
+/* ===== 顶栏 ===== */
+.topbar{flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:max(10px,env(safe-area-inset-top)) 16px 10px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);z-index:20}
+.topbar .logo{font-size:20px;line-height:1}
+.topbar h1{font-size:16px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.topbar .hint{font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap}
+
+/* ===== 横向滑动轨道 ===== */
+.pages{flex:1 1 auto;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;cursor:grab}
+.pages:active{cursor:grabbing}
+.pages::-webkit-scrollbar{display:none}
+.page{flex:0 0 100%;height:100%;overflow-y:auto;scroll-snap-align:start;scroll-snap-stop:always;padding:16px 16px calc(92px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch}
+.page::-webkit-scrollbar{width:0}
+
+/* ===== 通用卡片/控件 ===== */
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 1px 2px rgba(15,23,42,.04);margin-bottom:14px}
+.card h3{font-size:14px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:#0369a1;background:#e0f2fe;border:1px solid #bae6fd;border-radius:999px;padding:4px 10px;margin-bottom:10px}
+.hero h1{font-size:26px;font-weight:900;letter-spacing:-.5px}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:13px;color:var(--muted);margin-top:4px}
+.field-label{font-size:12px;font-weight:700;color:#334155;margin:0 0 6px 2px}
+.input,textarea.input{width:100%;border:1px solid var(--line);border-radius:14px;padding:11px 12px;font-size:14px;font-family:inherit;color:var(--ink);background:#f8fafc;outline:none;transition:border .15s,box-shadow .15s;resize:none}
+.input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(14,165,233,.12);background:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{border:1px solid var(--line);background:#fff;color:#475569;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.chip.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(14,165,233,.3)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:none;border-radius:16px;padding:14px;font-size:15px;font-weight:800;color:#fff;background:var(--grad);cursor:pointer;transition:transform .15s,box-shadow .15s,opacity .15s;box-shadow:0 8px 20px rgba(14,165,233,.28);font-family:inherit}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(14,165,233,.35)}
+.btn:active{transform:translateY(0)}
+.btn:disabled{background:#cbd5e1;box-shadow:none;cursor:not-allowed;transform:none}
+.btn.ghost{background:#fff;color:var(--indigo);border:1.5px solid #c7d2fe;box-shadow:none}
+.btn.ghost:hover{border-color:var(--indigo)}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.feature{background:linear-gradient(180deg,#f0f9ff,#e0f2fe);border:1px solid #bae6fd;border-radius:16px;padding:12px 8px;text-align:center}
+.feature .ic{font-size:20px}
+.feature .t{font-size:12px;font-weight:800;margin-top:6px}
+.feature .d{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.4}
+
+/* ===== 行程页 ===== */
+.daytabs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}
+.daytabs::-webkit-scrollbar{display:none}
+.map{position:relative;height:200px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(160deg,#e8f4fd 0%,#dbeafe 40%,#e0e7ff 100%)}
+.map .road{position:absolute;left:-10%;right:-10%;top:58%;height:54px;border-top:3px dashed #94a3b8;border-bottom:3px dashed #94a3b8;transform:rotate(-6deg)}
+.map .marker{position:absolute;font-size:18px;filter:drop-shadow(0 2px 3px rgba(15,23,42,.35));transform:translate(-50%,-100%)}
+.map .marker b{position:absolute;left:50%;top:100%;transform:translateX(-50%);background:#fff;border:1px solid var(--sky);color:#0369a1;font-size:10px;font-weight:800;padding:1px 6px;border-radius:999px;white-space:nowrap;margin-top:2px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.map .attr{position:absolute;right:8px;bottom:6px;font-size:10px;color:#64748b;background:rgba(255,255,255,.85);border-radius:6px;padding:2px 6px}
+.place{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.place:last-child{border-bottom:none}
+.place .em{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex:0 0 auto}
+.place .nm{font-size:13.5px;font-weight:700}
+.place .sm{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.35}
+.place .tg{font-size:10px;font-weight:700;color:#0369a1;background:#e0f2fe;border-radius:999px;padding:2px 8px;flex:0 0 auto}
+.cat-景点{background:#f0fdfa}.cat-美食{background:#fff7ed}.cat-住宿{background:#f0f9ff}.cat-交通{background:#f5f3ff}
+
+/* ===== 攻略页 ===== */
+.guide{border:1px solid var(--line);border-radius:18px;padding:14px;background:linear-gradient(180deg,#fff,#fafbff);margin-bottom:12px}
+.guide .gt{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px}
+.guide .gd{font-size:11px;color:var(--muted);margin:6px 0 10px;line-height:1.5}
+.guide .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.guide .tags span{font-size:10.5px;background:#eef2ff;color:#4338ca;border-radius:999px;padding:3px 9px;font-weight:600}
+.guide .imp{width:100%;border:1px solid #c7d2fe;background:#fff;color:var(--indigo);font-size:12px;font-weight:700;border-radius:12px;padding:8px;cursor:pointer;font-family:inherit}
+.guide .imp:hover{background:#eef2ff}
+
+/* ===== 共创页 ===== */
+.room{border:1.5px dashed #a5b4fc;background:linear-gradient(180deg,#eef2ff,#fff);border-radius:20px;padding:18px;text-align:center;margin-bottom:14px}
+.room .ric{font-size:30px}
+.room h3{font-size:15px;font-weight:800;margin:6px 0 4px}
+.room p{font-size:12px;color:var(--muted);margin-bottom:12px}
+
+/* ===== 设置页 ===== */
+.setrow{display:flex;align-items:center;gap:12px;padding:13px 2px;border-bottom:1px solid var(--line)}
+.setrow:last-child{border-bottom:none}
+.setrow .sic{width:36px;height:36px;border-radius:12px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:17px}
+.setrow .st{font-size:14px;font-weight:700}
+.setrow .sd{font-size:11px;color:var(--muted);margin-top:1px}
+.setrow .go{margin-left:auto;color:#94a3b8;font-size:16px}
+
+/* ===== 底部导航 ===== */
+.tabbar{flex:0 0 auto;display:flex;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:30}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:none;font-family:inherit;color:#94a3b8;cursor:pointer;padding:4px 0;border-radius:12px;transition:color .15s;position:relative}
+.tab span{font-size:19px;line-height:1;filter:grayscale(.4);opacity:.75;transition:all .15s}
+.tab em{font-style:normal;font-size:11px;font-weight:600}
+.tab.active{color:var(--indigo)}
+.tab.active span{filter:none;opacity:1;transform:translateY(-1px)}
+.tab.active em{font-weight:800}
+.tab.active::before{content:"";position:absolute;top:-9px;width:20px;height:3px;border-radius:99px;background:var(--grad);opacity:0;transition:opacity .15s}
+.tab.active::before{opacity:1}
+
+/* ===== 翻页指示点 ===== */
+.dots{position:fixed;left:0;right:0;bottom:calc(74px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:6px;z-index:25;pointer-events:none}
+.dots i{width:6px;height:6px;border-radius:99px;background:#cbd5e1;transition:all .25s}
+.dots i.on{width:18px;background:var(--grad)}
+
+/* ===== Toast ===== */
+.toast{position:fixed;left:50%;top:60px;transform:translateX(-50%) translateY(-12px);background:#0f172a;color:#fff;font-size:13px;font-weight:600;padding:10px 18px;border-radius:14px;box-shadow:0 10px 30px rgba(15,23,42,.25);opacity:0;transition:all .25s;z-index:99;pointer-events:none;max-width:86vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.empty{text-align:center;color:var(--muted);font-size:13px;padding:30px 0}
+.empty .ic{font-size:34px;margin-bottom:8px}
+.section-title{font-size:16px;font-weight:800;margin:2px 0 12px;display:flex;align-items:center;gap:8px}
+.section-title small{font-size:11px;color:var(--muted);font-weight:500;margin-left:auto}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header class="topbar">
+    <span class="logo">🗺</span>
+    <h1>途迹 TripMap</h1>
+    <span class="hint">左右滑动切换页面 →</span>
+  </header>
+
+  <main id="pages" class="pages">
+
+    <!-- ===== 首页 ===== -->
+    <section class="page" id="page-home">
+      <div class="hero">
+        <span class="badge">🤖 AI 驱动的旅游攻略工具</span>
+        <h1>途迹 <span>TripMap</span></h1>
+        <p>让每一次出发，都变得从容且自在 🧭</p>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3>📋 行程基本信息</h3>
+        <div class="field-label">目的地</div>
+        <input class="input" id="dest" placeholder="例：成都、京都、巴黎" value="成都">
+        <div class="field-label" style="margin-top:12px">行程天数</div>
+        <div class="chips" id="dayChips">
+          <button class="chip" data-days="2">2 天</button>
+          <button class="chip" data-days="3">3 天</button>
+          <button class="chip active" data-days="4">4 天</button>
+          <button class="chip" data-days="5">5 天</button>
+          <button class="chip" data-days="6">6 天</button>
+          <button class="chip" data-days="7">7 天</button>
+          <button class="chip" data-days="10">10 天</button>
+          <button class="chip" data-days="14">14 天</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📝 粘贴小红书笔记</h3>
+        <textarea class="input" id="notes" rows="6" placeholder="把小红书笔记、评论文字复制粘贴到这里...&#10;&#10;可以多次粘贴，AI 分析结果会追加到素材库。"></textarea>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn ghost" id="fillExample" style="flex:0 0 auto;width:auto;padding:12px 18px">填入示例</button>
+          <button class="btn" id="analyzeBtn">✨ AI 一键分析，生成行程规划</button>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature"><div class="ic">🤖</div><div class="t">AI 智能分类</div><div class="d">自动拆分笔记 按类别归纳</div></div>
+        <div class="feature"><div class="ic">🗺</div><div class="t">地图路线</div><div class="d">真实地图标注 路线连线</div></div>
+        <div class="feature"><div class="ic">📅</div><div class="t">灵活规划</div><div class="d">拖拽排序 AI 优化</div></div>
+      </div>
+
+      <button class="btn ghost" id="aiChat">AI 推荐 · 问我推荐地点、美食、攻略</button>
+    </section>
+
+    <!-- ===== 行程 ===== -->
+    <section class="page" id="page-plan">
+      <div class="section-title">🗺 行程规划<small>左右滑动看其他页面</small></div>
+      <div class="daytabs" id="dayTabs">
+        <button class="chip active">全部</button>
+        <button class="chip">Day 1</button>
+        <button class="chip">Day 2</button>
+        <button class="chip">Day 3</button>
+        <button class="chip">Day 4</button>
+      </div>
+
+      <div class="card" style="padding:6px 14px">
+        <div class="place"><span class="em cat-景点">🏛</span><div><div class="nm">宽窄巷子</div><div class="sm">成都著名历史文化街区，体验老成都风情</div></div><span class="tg">免费</span></div>
+        <div class="place"><span class="em cat-景点">🏛</span><div><div class="nm">大熊猫基地</div><div class="sm">近距离观看国宝大熊猫，必去</div></div><span class="tg">55元</span></div>
+        <div class="place"><span class="em cat-美食">🍜</span><div><div class="nm">马旺子川菜馆</div><div class="sm">地道川菜，水煮鱼和回锅肉必点</div></div><span class="tg">人均90</span></div>
+        <div class="place"><span class="em cat-住宿">🏨</span><div><div class="nm">春熙路亚朵酒店</div><div class="sm">市中心出行方便，近地铁 2 号线</div></div><span class="tg">¥420</span></div>
+        <div class="place"><span class="em cat-交通">🚗</span><div><div class="nm">地铁 + 打车</div><div class="sm">景区间打车约 10-20 分钟</div></div><span class="tg">贴士</span></div>
+      </div>
+
+      <div class="map">
+        <div class="road"></div>
+        <span class="marker" style="left:22%;top:36%">📌<b>宽窄巷子</b></span>
+        <span class="marker" style="left:50%;top:26%">🐼<b>熊猫基地</b></span>
+        <span class="marker" style="left:74%;top:46%">🍜<b>春熙路</b></span>
+        <span class="attr">© 2026 AutoNavi</span>
+      </div>
+      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:8px">分析笔记后，地点将自动标注在地图上</p>
+    </section>
+
+    <!-- ===== 攻略 ===== -->
+    <section class="page" id="page-guide">
+      <div class="section-title">📚 攻略库<small>AI 为你生成多套参考行程</small></div>
+
+      <div class="guide">
+        <div class="gt">🏛 经典打卡线</div>
+        <div class="gd">4 天 · 覆盖成都必去地标，节奏适中，适合第一次来成都的朋友。</div>
+        <div class="tags"><span>Day1 宽窄巷子→锦里</span><span>Day2 熊猫基地→文殊院</span><span>Day3 都江堰一日</span><span>Day4 人民公园→太古里</span></div>
+        <button class="imp">一键导入地点到素材库</button>
+      </div>
+
+      <div class="guide">
+        <div class="gt">🍜 美食探店线</div>
+        <div class="gd">4 天 · 以吃为主线，串起苍蝇馆子、夜市与茶馆，适合吃货。</div>
+        <div class="tags"><span>玉林路小酒馆</span><span>建设路小吃街</span><span>九眼桥夜市</span><span>鹤鸣茶社</span></div>
+        <button class="imp">一键导入地点到素材库</button>
+      </div>
+
+      <div class="guide">
+        <div class="gt">👨‍👩‍👧 亲子休闲线</div>
+        <div class="gd">4 天 · 节奏舒缓，熊猫、科技馆、公园为主，适合带娃家庭。</div>
+        <div class="tags"><span>熊猫基地半日</span><span>成都科技馆</span><span>人民公园</span><span>天府广场</span></div>
+        <button class="imp">一键导入地点到素材库</button>
+      </div>
+
+      <button class="btn">✨ 立即生成攻略</button>
+    </section>
+
+    <!-- ===== 共创 ===== -->
+    <section class="page" id="page-collab">
+      <div class="section-title">👥 多人共创<small>和朋友一起规划行程</small></div>
+      <p style="font-size:12px;color:var(--muted);margin:-6px 0 16px">和朋友一起规划行程，投票选出最想去的地方</p>
+
+      <div class="room">
+        <div class="ric">🏠</div>
+        <h3>创建房间</h3>
+        <p>创建一个新房间，邀请朋友加入</p>
+        <button class="btn" id="createRoom">✨ 创建房间</button>
+      </div>
+
+      <div class="card">
+        <h3>🔗 加入房间</h3>
+        <input class="input" id="roomCode" placeholder="输入邀请码" maxlength="6" style="text-transform:uppercase">
+        <button class="btn ghost" id="joinRoom" style="margin-top:12px">加入</button>
+      </div>
+      <div class="empty" style="padding:14px 0 0">
+        <div class="ic">🔔</div>
+        创建房间后可邀请朋友加入<br>（静态演示：房间/成员/投票为前端模拟）
+      </div>
+    </section>
+
+    <!-- ===== 设置 ===== -->
+    <section class="page" id="page-settings">
+      <div class="section-title">⚙️ 设置<small>API Key 管理、偏好设置等</small></div>
+      <div class="card" style="padding:6px 14px">
+        <div class="setrow"><span class="sic">🔑</span><div><div class="st">大模型 API Key</div><div class="sd">用于笔记分析、攻略生成、AI 对话</div></div><span class="go">›</span></div>
+        <div class="setrow"><span class="sic">🗺</span><div><div class="st">高德地图 Key</div><div class="sd">用于地图展示与路线规划</div></div><span class="go">›</span></div>
+        <div class="setrow"><span class="sic">🎨</span><div><div class="st">主题偏好</div><div class="sd">浅色 / 深色 / 跟随系统</div></div><span class="go">›</span></div>
+        <div class="setrow"><span class="sic">🗑</span><div><div class="st">清除本地数据</div><div class="sd">清空素材库与行程记录</div></div><span class="go">›</span></div>
+        <div class="setrow"><span class="sic">ℹ️</span><div><div class="st">关于</div><div class="sd">途迹 TripMap · v0.1 静态演示版</div></div><span class="go">›</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <nav class="tabbar">
+    <button class="tab active" data-page="page-home"><span>🏠</span><em>首页</em></button>
+    <button class="tab" data-page="page-plan"><span>🗺</span><em>行程</em></button>
+    <button class="tab" data-page="page-guide"><span>📚</span><em>攻略</em></button>
+    <button class="tab" data-page="page-collab"><span>👥</span><em>共创</em></button>
+    <button class="tab" data-page="page-settings"><span>⚙️</span><em>设置</em></button>
+  </nav>
+
+  <div class="dots" id="dots"></div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+(function(){
+  var pages=document.getElementById('pages'),
+      tabs=Array.prototype.slice.call(document.querySelectorAll('.tab')),
+      pageEls=Array.prototype.slice.call(document.querySelectorAll('.page')),
+      dots=document.getElementById('dots'),
+      toast=document.getElementById('toast'),
+      timer=null;
+
+  pageEls.forEach(function(_,i){var d=document.createElement('i');if(i===0)d.className='on';dots.appendChild(d);});
+  var dotEls=Array.prototype.slice.call(dots.children);
+
+  function idx(){var w=pages.clientWidth||1;return Math.max(0,Math.min(pageEls.length-1,Math.round(pages.scrollLeft/w)));}
+  function go(i){i=Math.max(0,Math.min(pageEls.length-1,i));pages.scrollTo({left:i*pages.clientWidth,behavior:'smooth'});}
+  function paint(){var i=idx();tabs.forEach(function(t,k){t.classList.toggle('active',k===i);});dotEls.forEach(function(d,k){d.className=k===i?'on':'';});}
+
+  pages.addEventListener('scroll',paint,{passive:true});
+  window.addEventListener('resize',paint);
+
+  tabs.forEach(function(t){t.addEventListener('click',function(){go(pageEls.indexOf(document.getElementById(t.dataset.page)));});});
+
+  // 键盘 ← →
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight')go(idx()+1);
+    else if(e.key==='ArrowLeft')go(idx()-1);
+  });
+
+  // 桌面端鼠标拖拽横滑
+  var down=false,startX=0,startSL=0,moved=false;
+  pages.addEventListener('pointerdown',function(e){
+    if(e.pointerType!=='mouse')return;
+    down=true;moved=false;startX=e.clientX;startSL=pages.scrollLeft;
+    try{pages.setPointerCapture(e.pointerId);}catch(_){}
+  });
+  pages.addEventListener('pointermove',function(e){
+    if(!down)return;
+    var dx=e.clientX-startX;
+    if(Math.abs(dx)>6)moved=true;
+    pages.scrollLeft=startSL-dx;
+  });
+  function up(){down=false;}
+  pages.addEventListener('pointerup',up);
+  pages.addEventListener('pointercancel',up);
+  pages.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
+
+  // 滚轮：纵向滚轮映射为横向翻页，页面内部还能竖向滚动
+  pages.addEventListener('wheel',function(e){
+    if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;
+    var cur=pageEls[idx()], can=cur.scrollHeight>cur.clientHeight+1,
+        atTop=cur.scrollTop<=0, atBottom=cur.scrollTop+cur.clientHeight>=cur.scrollHeight-1;
+    if(can&&!((atTop&&e.deltaY<0)||(atBottom&&e.deltaY>0)))return;
+    e.preventDefault();
+    pages.scrollLeft+=e.deltaY;
+  },{passive:false});
+
+  // 演示交互
+  function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(function(){toast.classList.remove('show');},2200);}
+
+  var chips=Array.prototype.slice.call(document.querySelectorAll('#dayChips .chip'));
+  chips.forEach(function(c){c.addEventListener('click',function(){chips.forEach(function(x){x.classList.remove('active');});c.classList.add('active');});});
+
+  document.getElementById('fillExample').addEventListener('click',function(){
+    document.getElementById('notes').value='成都4天3晚攻略！\nDay1：宽窄巷子拍照超出片，晚上去锦里看夜景，小吃超多～\nDay2：大熊猫基地一定要早上去，熊猫宝宝超可爱！下午文殊院吃素斋。\nDay3：都江堰一日游，水利工程很震撼。\nDay4：人民公园鹤鸣茶社喝盖碗茶，下午太古里逛街买买买。\n住宿推荐春熙路附近，出行方便。\n美食：马旺子川菜馆、玉林路小酒馆、建设路小吃街，人均都不贵！';
+    showToast('✅ 已填入示例笔记');
+  });
+
+  var ab=document.getElementById('analyzeBtn');
+  ab.addEventListener('click',function(){
+    var v=document.getElementById('notes').value.trim();
+    if(!v){showToast('⚠️ 请先粘贴笔记内容');return;}
+    ab.disabled=true;ab.textContent='⏳ AI 分析中…';
+    setTimeout(function(){ab.disabled=false;ab.textContent='✨ AI 一键分析，生成行程规划';showToast('✅ 分析完成，已生成 6 个地点');go(1);},1200);
+  });
+
+  document.getElementById('aiChat').addEventListener('click',function(){showToast('💬 AI 推荐：宽窄巷子、熊猫基地、都江堰（演示）');});
+
+  var dayTabs=Array.prototype.slice.call(document.querySelectorAll('#dayTabs .chip'));
+  dayTabs.forEach(function(c){c.addEventListener('click',function(){dayTabs.forEach(function(x){x.classList.remove('active');});c.classList.add('active');});});
+
+  document.getElementById('createRoom').addEventListener('click',function(){
+    var code=Math.random().toString(36).substring(2,8).toUpperCase();
+    showToast('🏠 房间已创建，邀请码：'+code);
+  });
+  document.getElementById('joinRoom').addEventListener('click',function(){
+    var c=document.getElementById('roomCode').value.trim();
+    if(!c){showToast('⚠️ 请输入邀请码');return;}
+    showToast('🔗 已加入房间 '+c.toUpperCase()+'（演示）');
+  });
+
+  Array.prototype.slice.call(document.querySelectorAll('.guide .imp')).forEach(function(b){
+    b.addEventListener('click',function(){showToast('✅ 已导入地点到素材库');});
+  });
+  document.querySelector('#page-guide .btn').addEventListener('click',function(){showToast('✨ 攻略生成中…（演示）');});
+})();
+</script>
+</body>
+</html>
