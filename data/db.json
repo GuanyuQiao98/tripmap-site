@@ -1,0 +1,943 @@
+{
+  "version": "0.5",
+  "carousel": [
+    {
+      "tag": "🏔 热门目的地",
+      "title": "九寨沟 · 人间仙境",
+      "desc": "五彩池、诺日朗瀑布，秋天层林尽染，一生必去一次。",
+      "img": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80",
+      "btn": "查看九寨沟攻略",
+      "dest": "sichuan"
+    },
+    {
+      "tag": "🏯 文化之旅",
+      "title": "故宫 · 六百年紫禁城",
+      "desc": "红墙黄瓦、琉璃飞檐，穿越明清两代王朝的恢弘。",
+      "img": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=1600&q=80",
+      "btn": "查看北京攻略",
+      "dest": "beijing"
+    },
+    {
+      "tag": "🏖 海岛度假",
+      "title": "三亚 · 阳光沙滩",
+      "desc": "亚龙湾的白沙碧海，蜈支洲岛的清澈海底，度假首选。",
+      "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80",
+      "btn": "查看三亚攻略",
+      "dest": "sanya"
+    },
+    {
+      "tag": "🛣 自驾天堂",
+      "title": "独库公路 · 中国最美公路",
+      "desc": "穿越天山，一日四季，雪山草原峡谷一次看遍。",
+      "img": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80",
+      "btn": "查看新疆攻略",
+      "dest": "xinjiang"
+    }
+  ],
+  "destinations": [
+    {
+      "id": "chengdu",
+      "name": "成都",
+      "en": "CHENGDU",
+      "emoji": "🍲",
+      "x": 34,
+      "y": 52,
+      "desc": "巴适慢生活 · 火锅与熊猫",
+      "tagline": "天府之国，来了就不想走",
+      "img": "https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80",
+      "spots": [
+        {
+          "name": "宽窄巷子",
+          "cat": "景点",
+          "emoji": "🏛",
+          "summary": "清代古街巷，体验老成都慢生活",
+          "price": "免费",
+          "tip": "建议早去人少",
+          "rating": 4
+        },
+        {
+          "name": "大熊猫基地",
+          "cat": "景点",
+          "emoji": "🐼",
+          "summary": "近距离看国宝，早上熊猫最活跃",
+          "price": "55元",
+          "tip": "早点去",
+          "rating": 5
+        },
+        {
+          "name": "都江堰",
+          "cat": "景点",
+          "emoji": "⛰",
+          "summary": "两千多年水利工程，震撼必看",
+          "price": "80元",
+          "tip": "距市区1小时",
+          "rating": 5
+        },
+        {
+          "name": "马旺子川菜馆",
+          "cat": "美食",
+          "emoji": "🍜",
+          "summary": "地道川菜，水煮鱼回锅肉必点",
+          "price": "人均90",
+          "tip": "饭点排队",
+          "rating": 4
+        },
+        {
+          "name": "鹤鸣茶社",
+          "cat": "美食",
+          "emoji": "🍵",
+          "summary": "百年茶馆喝盖碗茶，下午氛围最好",
+          "price": "人均30",
+          "tip": "下午去",
+          "rating": 5
+        },
+        {
+          "name": "武侯祠",
+          "cat": "景点",
+          "emoji": "🏯",
+          "summary": "三国文化圣地，红墙竹影好出片",
+          "price": "50元",
+          "tip": "与锦里紧邻",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "beijing",
+      "name": "北京",
+      "en": "BEIJING",
+      "emoji": "🏮",
+      "x": 30,
+      "y": 17,
+      "desc": "六朝古都 · 皇家气派",
+      "tagline": "一座城，半部中国史",
+      "img": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=800&q=80",
+      "spots": [
+        {
+          "name": "故宫博物院",
+          "cat": "景点",
+          "emoji": "🏯",
+          "summary": "六百年紫禁城，世界最大宫殿群",
+          "price": "60元",
+          "tip": "周一闭馆",
+          "rating": 5
+        },
+        {
+          "name": "八达岭长城",
+          "cat": "景点",
+          "emoji": "🧱",
+          "summary": "不到长城非好汉，壮观震撼",
+          "price": "40元",
+          "tip": "早去避开人流",
+          "rating": 5
+        },
+        {
+          "name": "天坛公园",
+          "cat": "景点",
+          "emoji": "⛩",
+          "summary": "明清皇帝祭天之所，古柏参天",
+          "price": "15元",
+          "tip": "联票更划算",
+          "rating": 4
+        },
+        {
+          "name": "颐和园",
+          "cat": "景点",
+          "emoji": "🚣",
+          "summary": "皇家园林，昆明湖泛舟",
+          "price": "30元",
+          "tip": "下午光线好",
+          "rating": 4
+        },
+        {
+          "name": "全聚德烤鸭",
+          "cat": "美食",
+          "emoji": "🦆",
+          "summary": "百年老字号，正宗北京烤鸭",
+          "price": "人均180",
+          "tip": "提前订位",
+          "rating": 4
+        },
+        {
+          "name": "南锣鼓巷",
+          "cat": "景点",
+          "emoji": "🏮",
+          "summary": "老北京胡同，文艺小店聚集",
+          "price": "免费",
+          "tip": "晚上更热闹",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "shanghai",
+      "name": "上海",
+      "en": "SHANGHAI",
+      "emoji": "🌃",
+      "x": 53,
+      "y": 33,
+      "desc": "魔都 · 现代与复古交织",
+      "tagline": "外滩夜色，陆家嘴天际线",
+      "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=800&q=80",
+      "spots": [
+        {
+          "name": "外滩",
+          "cat": "景点",
+          "emoji": "🌃",
+          "summary": "万国建筑群 + 陆家嘴夜景",
+          "price": "免费",
+          "tip": "晚上去",
+          "rating": 5
+        },
+        {
+          "name": "陆家嘴",
+          "cat": "景点",
+          "emoji": "🏙",
+          "summary": "东方明珠、三件套摩天楼",
+          "price": "免费",
+          "tip": "登塔另收费",
+          "rating": 4
+        },
+        {
+          "name": "豫园",
+          "cat": "景点",
+          "emoji": "🏮",
+          "summary": "明代江南园林，九曲桥荷花池",
+          "price": "40元",
+          "tip": "避开周末",
+          "rating": 4
+        },
+        {
+          "name": "田子坊",
+          "cat": "景点",
+          "emoji": "🎨",
+          "summary": "石库门里的创意小街",
+          "price": "免费",
+          "tip": "傍晚有味道",
+          "rating": 4
+        },
+        {
+          "name": "上海迪士尼",
+          "cat": "景点",
+          "emoji": "🎢",
+          "summary": "梦幻城堡与烟花秀",
+          "price": "475元",
+          "tip": "买早享卡",
+          "rating": 5
+        },
+        {
+          "name": "南翔小笼",
+          "cat": "美食",
+          "emoji": "🥟",
+          "summary": "皮薄汁多，上海名点",
+          "price": "人均50",
+          "tip": "现包现蒸",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "xian",
+      "name": "西安",
+      "en": "XI'AN",
+      "emoji": "🏯",
+      "x": 40,
+      "y": 36,
+      "desc": "千年古都 · 梦回长安",
+      "tagline": "十三朝古都，碳水天堂",
+      "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=800&q=80",
+      "spots": [
+        {
+          "name": "秦始皇兵马俑",
+          "cat": "景点",
+          "emoji": "⚔",
+          "summary": "世界第八大奇迹，气势恢宏",
+          "price": "120元",
+          "tip": "请讲解员",
+          "rating": 5
+        },
+        {
+          "name": "大雁塔",
+          "cat": "景点",
+          "emoji": "🗼",
+          "summary": "玄奘译经之地，喷泉广场壮观",
+          "price": "30元",
+          "tip": "晚上有喷泉",
+          "rating": 4
+        },
+        {
+          "name": "回民街",
+          "cat": "美食",
+          "emoji": "🍢",
+          "summary": "肉夹馍、泡馍、biangbiang面",
+          "price": "人均60",
+          "tip": "吃货天堂",
+          "rating": 4
+        },
+        {
+          "name": "西安城墙",
+          "cat": "景点",
+          "emoji": "🚲",
+          "summary": "保存最完整的古城墙，可骑行",
+          "price": "54元",
+          "tip": "傍晚骑行最美",
+          "rating": 5
+        },
+        {
+          "name": "大唐不夜城",
+          "cat": "景点",
+          "emoji": "🏮",
+          "summary": "盛唐夜景，不倒翁小姐姐",
+          "price": "免费",
+          "tip": "晚上去",
+          "rating": 5
+        }
+      ]
+    },
+    {
+      "id": "sanya",
+      "name": "三亚",
+      "en": "SANYA",
+      "emoji": "🏖",
+      "x": 46,
+      "y": 80,
+      "desc": "热带海岛 · 阳光沙滩",
+      "tagline": "中国的马尔代夫",
+      "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+      "spots": [
+        {
+          "name": "亚龙湾",
+          "cat": "景点",
+          "emoji": "🏖",
+          "summary": "白沙碧海，水质清澈",
+          "price": "免费",
+          "tip": "游泳佳地",
+          "rating": 5
+        },
+        {
+          "name": "蜈支洲岛",
+          "cat": "景点",
+          "emoji": "🐠",
+          "summary": "潜水胜地，海底世界绚丽",
+          "price": "140元",
+          "tip": "含船票",
+          "rating": 5
+        },
+        {
+          "name": "天涯海角",
+          "cat": "景点",
+          "emoji": "🌴",
+          "summary": "爱情圣地，椰林海景",
+          "price": "68元",
+          "tip": "情侣打卡",
+          "rating": 4
+        },
+        {
+          "name": "南山文化旅游区",
+          "cat": "景点",
+          "emoji": "🙏",
+          "summary": "108米海上观音像",
+          "price": "108元",
+          "tip": "祈福胜地",
+          "rating": 4
+        },
+        {
+          "name": "第一市场海鲜",
+          "cat": "美食",
+          "emoji": "🦞",
+          "summary": "现买现做，海鲜大餐",
+          "price": "人均150",
+          "tip": "讲价",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "xinjiang",
+      "name": "新疆",
+      "en": "XINJIANG",
+      "emoji": "🏔",
+      "x": 14,
+      "y": 24,
+      "desc": "大美新疆 · 自驾天堂",
+      "tagline": "不到新疆，不知中国之大",
+      "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80",
+      "spots": [
+        {
+          "name": "喀纳斯湖",
+          "cat": "景点",
+          "emoji": "🏞",
+          "summary": "人间净土，湖水变幻莫测",
+          "price": "160元",
+          "tip": "秋天最美",
+          "rating": 5
+        },
+        {
+          "name": "天山天池",
+          "cat": "景点",
+          "emoji": "🏔",
+          "summary": "雪山环绕的高山湖泊",
+          "price": "95元",
+          "tip": "含区间车",
+          "rating": 5
+        },
+        {
+          "name": "那拉提草原",
+          "cat": "景点",
+          "emoji": "🌿",
+          "summary": "空中草原，牛羊成群",
+          "price": "95元",
+          "tip": "夏季最佳",
+          "rating": 5
+        },
+        {
+          "name": "独库公路",
+          "cat": "景点",
+          "emoji": "🛣",
+          "summary": "中国最美公路，一日四季",
+          "price": "免费",
+          "tip": "6-9月开放",
+          "rating": 5
+        },
+        {
+          "name": "大巴扎",
+          "cat": "购物",
+          "emoji": "🧕",
+          "summary": "中亚风情集市，干果手工艺品",
+          "price": "免费",
+          "tip": "可砍价",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "lhasa",
+      "name": "拉萨",
+      "en": "LHASA",
+      "emoji": "⛰",
+      "x": 28,
+      "y": 62,
+      "desc": "雪域圣城 · 心灵之旅",
+      "tagline": "日光之城，离天堂最近",
+      "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80",
+      "spots": [
+        {
+          "name": "布达拉宫",
+          "cat": "景点",
+          "emoji": "🏰",
+          "summary": "世界屋脊上的宫殿，宏伟神圣",
+          "price": "200元",
+          "tip": "提前预约",
+          "rating": 5
+        },
+        {
+          "name": "大昭寺",
+          "cat": "景点",
+          "emoji": "🛕",
+          "summary": "藏传佛教圣地，朝圣者云集",
+          "price": "85元",
+          "tip": "清晨转经",
+          "rating": 5
+        },
+        {
+          "name": "纳木错",
+          "cat": "景点",
+          "emoji": "🌊",
+          "summary": "西藏三大圣湖之一，湛蓝如镜",
+          "price": "120元",
+          "tip": "注意高反",
+          "rating": 5
+        },
+        {
+          "name": "羊卓雍措",
+          "cat": "景点",
+          "emoji": "💎",
+          "summary": "宝石蓝的圣湖，环湖公路美",
+          "price": "60元",
+          "tip": "海拔高",
+          "rating": 5
+        },
+        {
+          "name": "甜茶馆",
+          "cat": "美食",
+          "emoji": "☕",
+          "summary": "藏式甜茶，酥油茶配藏面",
+          "price": "人均20",
+          "tip": "体验当地生活",
+          "rating": 4
+        }
+      ]
+    },
+    {
+      "id": "guangzhou",
+      "name": "广州",
+      "en": "GUANGZHOU",
+      "emoji": "🥟",
+      "x": 50,
+      "y": 64,
+      "desc": "羊城 · 美食之都",
+      "tagline": "食在广州，早茶与宵夜",
+      "img": "https://images.unsplash.com/photo-1523374228107-231e9f4622d4?auto=format&fit=crop&w=800&q=80",
+      "spots": [
+        {
+          "name": "广州塔",
+          "cat": "景点",
+          "emoji": "🗼",
+          "summary": "小蛮腰，珠江夜景最佳观景点",
+          "price": "150元",
+          "tip": "晚上亮灯",
+          "rating": 4
+        },
+        {
+          "name": "沙面岛",
+          "cat": "景点",
+          "emoji": "🏛",
+          "summary": "欧陆风情建筑群，文艺拍照地",
+          "price": "免费",
+          "tip": "下午光好",
+          "rating": 4
+        },
+        {
+          "name": "长隆野生动物世界",
+          "cat": "景点",
+          "emoji": "🦒",
+          "summary": "亲子必去，动物大迁徙表演",
+          "price": "250元",
+          "tip": "早点入园",
+          "rating": 5
+        },
+        {
+          "name": "珠江夜游",
+          "cat": "景点",
+          "emoji": "🚢",
+          "summary": "游船看两岸灯火",
+          "price": "98元",
+          "tip": "夜景美",
+          "rating": 4
+        },
+        {
+          "name": "陶陶居早茶",
+          "cat": "美食",
+          "emoji": "🥟",
+          "summary": "百年茶楼，虾饺烧卖一流",
+          "price": "人均80",
+          "tip": "排队久",
+          "rating": 5
+        },
+        {
+          "name": "上下九步行街",
+          "cat": "购物",
+          "emoji": "🛍",
+          "summary": "老广州骑楼街，小吃聚集",
+          "price": "免费",
+          "tip": "晚上热闹",
+          "rating": 4
+        }
+      ]
+    }
+  ],
+  "guides": [
+    {
+      "icon": "🏛",
+      "name": "经典打卡线",
+      "rating": "4.9 · 12.8k 人参考",
+      "desc": "覆盖必去地标，节奏适中，第一次来首选。",
+      "days": [
+        "Day1 市区经典地标",
+        "Day2 历史文化深度游",
+        "Day3 周边一日游",
+        "Day4 休闲购物返程"
+      ]
+    },
+    {
+      "icon": "🍜",
+      "name": "美食探店线",
+      "rating": "4.8 · 9.6k 人参考",
+      "desc": "以吃为主线，串起老字号与街头小吃。",
+      "days": [
+        "Day1 老字号早茶",
+        "Day2 夜市小吃",
+        "Day3 网红餐厅",
+        "Day4 伴手礼采购"
+      ]
+    },
+    {
+      "icon": "👨‍👩‍👧",
+      "name": "亲子休闲线",
+      "rating": "4.7 · 6.1k 人参考",
+      "desc": "节奏舒缓，乐园、公园、动物园为主。",
+      "days": [
+        "Day1 动物园",
+        "Day2 科技馆+公园",
+        "Day3 乐园全日",
+        "Day4 海边/湖畔放松"
+      ]
+    },
+    {
+      "icon": "📷",
+      "name": "人文摄影线",
+      "rating": "4.6 · 3.2k 人参考",
+      "desc": "古建、老街、夜景，摄影爱好者专属。",
+      "days": [
+        "Day1 古建晨光",
+        "Day2 老街人文",
+        "Day3 日落+夜景",
+        "Day4 博物馆+街拍"
+      ]
+    }
+  ],
+  "features": [
+    {
+      "ic": "🤖",
+      "t": "AI 智能规划",
+      "d": "粘贴小红书笔记，AI 自动拆分归类，生成结构化行程"
+    },
+    {
+      "ic": "🗺",
+      "t": "真实地图",
+      "d": "高德地图标注地点、路线连线、交通耗时一目了然"
+    },
+    {
+      "ic": "📅",
+      "t": "灵活编排",
+      "d": "点 + 添加地点，自由安排每一天的行程顺序"
+    },
+    {
+      "ic": "👥",
+      "t": "共创社区",
+      "d": "晒旅行照片、点赞评论、弹幕互动、投票选目的地"
+    }
+  ],
+  "stats": [
+    {
+      "v": "1,200+",
+      "k": "收录目的地"
+    },
+    {
+      "v": "8 类",
+      "k": "地点分类"
+    },
+    {
+      "v": "36 个",
+      "k": "热门景区"
+    },
+    {
+      "v": "99%",
+      "k": "AI 识别准确率"
+    }
+  ],
+  "members": [
+    {
+      "av": "🙋",
+      "n": "我"
+    },
+    {
+      "av": "😎",
+      "n": "小明"
+    },
+    {
+      "av": "🧳",
+      "n": "Amy"
+    },
+    {
+      "av": "🐱",
+      "n": "小猫咪"
+    }
+  ],
+  "votes": [
+    {
+      "id": "v1",
+      "name": "宽窄巷子",
+      "emoji": "🏛",
+      "bg": "#e0f2fe",
+      "up": 18,
+      "down": 2,
+      "my": null
+    },
+    {
+      "id": "v2",
+      "name": "都江堰",
+      "emoji": "⛰",
+      "bg": "#d1fae5",
+      "up": 15,
+      "down": 1,
+      "my": null
+    },
+    {
+      "id": "v3",
+      "name": "建设路小吃街",
+      "emoji": "🍢",
+      "bg": "#fff7ed",
+      "up": 12,
+      "down": 4,
+      "my": null
+    }
+  ],
+  "msgs": [
+    {
+      "name": "小明",
+      "av": "😎",
+      "text": "都江堰一定要去！太震撼了"
+    },
+    {
+      "name": "Amy",
+      "av": "🧳",
+      "text": "建议早点去熊猫基地，人少"
+    },
+    {
+      "name": "我",
+      "av": "🙋",
+      "text": "晚上去建设路吃小吃怎么样？"
+    }
+  ],
+  "cats": {
+    "景点": [
+      "#e0f2fe",
+      "🏛"
+    ],
+    "美食": [
+      "#fff7ed",
+      "🍜"
+    ],
+    "住宿": [
+      "#f0f9ff",
+      "🏨"
+    ],
+    "购物": [
+      "#fdf4ff",
+      "🛍"
+    ],
+    "交通": [
+      "#f5f3ff",
+      "🚇"
+    ],
+    "贴士": [
+      "#fef9c3",
+      "🎫"
+    ]
+  },
+  "deals": [
+    {
+      "img": "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=600&q=80",
+      "city": "🏮 北京",
+      "title": "故宫+八达岭长城 2日深度游",
+      "old": "¥1,599",
+      "price": "¥1,299",
+      "tag": "8.2折",
+      "save": "省 ¥300",
+      "meta": "🚌 含交通 · ⭐4.9 · 已售 2.3k"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80",
+      "city": "🍲 成都",
+      "title": "九寨沟+黄龙 4日纯玩团",
+      "old": "¥2,880",
+      "price": "¥2,199",
+      "tag": "7.6折",
+      "save": "省 ¥681",
+      "meta": "🏨 含4晚住宿 · ⭐4.8 · 已售 1.8k"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1523374228107-231e9f4622d4?auto=format&fit=crop&w=600&q=80",
+      "city": "🏖 三亚",
+      "title": "亚龙湾五星酒店 3晚自由行",
+      "old": "¥3,688",
+      "price": "¥2,499",
+      "tag": "6.8折",
+      "save": "省 ¥1,189",
+      "meta": "✈ 含机票 · ⭐4.9 · 已售 3.1k"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=600&q=80",
+      "city": "🏯 西安",
+      "title": "兵马俑+华山 3日游",
+      "old": "¥1,998",
+      "price": "¥1,599",
+      "tag": "8.0折",
+      "save": "省 ¥399",
+      "meta": "🚌 含门票 · ⭐4.7 · 已售 980"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80",
+      "city": "🏔 新疆",
+      "title": "北疆环线 7日摄影团",
+      "old": "¥5,980",
+      "price": "¥4,688",
+      "tag": "7.8折",
+      "save": "省 ¥1,292",
+      "meta": "📷 摄影领队 · ⭐4.9 · 已售 420"
+    },
+    {
+      "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80",
+      "city": "⛰ 拉萨",
+      "title": "西藏全景 6日深度游",
+      "old": "¥4,280",
+      "price": "¥3,399",
+      "tag": "7.9折",
+      "save": "省 ¥881",
+      "meta": "🏨 含高反保障 · ⭐4.8 · 已售 760"
+    }
+  ],
+  "feeds": [
+    {
+      "id": "f1",
+      "user": "旅行达人Amy",
+      "av": "🧳",
+      "mine": false,
+      "time": "2 小时前",
+      "images": [
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80"
+      ],
+      "text": "九寨沟的秋天也太美了吧！随手一拍都是壁纸 🍁 湖水蓝得像宝石，强烈推荐！",
+      "loc": "四川·九寨沟",
+      "likes": 128,
+      "shares": 23,
+      "comments": [
+        {
+          "u": "小明",
+          "av": "😎",
+          "t": "绝了！求攻略"
+        },
+        {
+          "u": "小猫咪",
+          "av": "🐱",
+          "t": "收藏了，今年秋天就去！"
+        }
+      ]
+    },
+    {
+      "id": "f2",
+      "user": "小明",
+      "av": "😎",
+      "mine": false,
+      "time": "5 小时前",
+      "images": [
+        "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=900&q=80"
+      ],
+      "text": "故宫的红墙真的太出片了，建议早上 8 点去人少 🏮 附一张随手拍～",
+      "loc": "北京·故宫博物院",
+      "likes": 86,
+      "shares": 9,
+      "comments": [
+        {
+          "u": "Amy",
+          "av": "🧳",
+          "t": "下次带我！"
+        }
+      ]
+    },
+    {
+      "id": "f3",
+      "user": "小猫咪",
+      "av": "🐱",
+      "mine": false,
+      "time": "昨天",
+      "images": [
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+      ],
+      "text": "三亚亚龙湾的海，蓝到不真实 🌊 躺在沙滩一下午，啥也不想干～",
+      "loc": "海南·三亚亚龙湾",
+      "likes": 203,
+      "shares": 45,
+      "comments": [
+        {
+          "u": "我",
+          "av": "🙋",
+          "t": "订了酒店，下周出发！"
+        }
+      ]
+    },
+    {
+      "id": "f4",
+      "user": "驴友老张",
+      "av": "🧗",
+      "mine": false,
+      "time": "昨天",
+      "images": [],
+      "text": "周末去哪儿？大家来投票决定 👇 附一张上次川西徒步照",
+      "loc": "四川·成都出发",
+      "likes": 0,
+      "shares": 0,
+      "comments": [
+        {
+          "u": "Amy",
+          "av": "🧳",
+          "t": "投都江堰一票"
+        }
+      ],
+      "vote": {
+        "q": "周末去哪儿？",
+        "options": [
+          {
+            "t": "都江堰",
+            "v": 18
+          },
+          {
+            "t": "青城山",
+            "v": 12
+          },
+          {
+            "t": "洛带古镇",
+            "v": 7
+          }
+        ],
+        "my": null
+      }
+    },
+    {
+      "id": "f5",
+      "user": "我",
+      "av": "🙋",
+      "mine": true,
+      "time": "昨天",
+      "images": [
+        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80"
+      ],
+      "text": "新疆独库公路自驾回来啦！一日四季，此生必去 🛣 攻略稍后发",
+      "loc": "新疆·独库公路",
+      "likes": 64,
+      "shares": 12,
+      "comments": [
+        {
+          "u": "小明",
+          "av": "😎",
+          "t": "太帅了，求路线！"
+        }
+      ]
+    }
+  ],
+  "danmaku": [
+    "好美！",
+    "想去+1",
+    "求同款路线",
+    "绝绝子",
+    "收藏了",
+    "这也太出片了",
+    "下次一定去",
+    "已种草",
+    "博主拍得真好",
+    "风景天花板"
+  ],
+  "feedImages": [
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=900&q=80",
+    "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=900&q=80"
+  ],
+  "feedLocs": [
+    "四川·九寨沟",
+    "北京·故宫",
+    "海南·三亚",
+    "新疆·独库公路",
+    "云南·大理",
+    "西藏·拉萨",
+    "陕西·西安",
+    "上海·外滩",
+    "成都·宽窄巷子"
+  ]
+}

@@ -362,6 +362,59 @@ a{color:inherit;text-decoration:none}
 .ai-in input{flex:1;border:1px solid var(--line);border-radius:14px;padding:11px 14px;font-size:13px;font-family:inherit;outline:none;background:#f8fafc;min-width:0}
 .ai-in input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(14,165,233,.12)}
 .ai-in button{border:none;background:var(--grad);color:#fff;border-radius:14px;padding:0 18px;font-weight:800;cursor:pointer;font-family:inherit;font-size:13px}
+
+/* ===== 共创社区 ===== */
+.subtab{display:flex;gap:6px;margin-bottom:16px;padding:6px;background:rgba(255,255,255,.65);border:1px solid var(--line);border-radius:999px;backdrop-filter:blur(12px);width:max-content;max-width:100%;overflow-x:auto}
+.subtab .sub{border:none;background:transparent;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:800;color:#475569;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .2s}
+.subtab .sub.active{background:var(--grad);color:#fff;box-shadow:0 6px 16px rgba(14,165,233,.35)}
+.dm-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.dm-toggle{font-size:12px;font-weight:800;color:var(--indigo);background:rgba(233,231,255,.9);border:1px solid rgba(196,181,253,.7);padding:7px 14px;border-radius:999px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .2s}
+.dm-toggle.off{opacity:.5}
+.dm-layer{position:relative;flex:1;height:32px;overflow:hidden;background:rgba(15,23,42,.06);border-radius:14px}
+.dm{position:absolute;left:100%;white-space:nowrap;font-size:12px;font-weight:800;color:#0f172a;background:rgba(255,255,255,.92);padding:3px 12px;border-radius:999px;box-shadow:0 2px 8px rgba(15,23,42,.12);animation:dmMove linear forwards;pointer-events:none}
+@keyframes dmMove{to{transform:translateX(calc(-100vw - 100%))}}
+.post{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;margin-bottom:14px;box-shadow:0 4px 16px rgba(15,23,42,.05);transition:all .25s}
+.post:hover{box-shadow:0 10px 28px rgba(15,23,42,.10)}
+.pu{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.pu .pav{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;background:linear-gradient(135deg,#e0e7ff,#fce7f3);border:2px solid #fff;box-shadow:0 3px 8px rgba(15,23,42,.12);flex:0 0 auto}
+.pu b{font-size:14px}
+.pu .pt{font-size:10.5px;color:#94a3b8;margin-top:1px}
+.pu .pmine{font-size:10px;font-weight:800;color:#4338ca;background:#e0e7ff;border-radius:999px;padding:2px 9px;margin-left:auto}
+.ptext{font-size:13.5px;line-height:1.6;margin-bottom:10px}
+.pimg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;border-radius:14px;overflow:hidden;margin-bottom:10px}
+.pimg img{width:100%;height:150px;object-fit:cover;display:block}
+.pimg img:only-child{grid-column:1/-1;height:230px}
+.ploc{font-size:11.5px;color:var(--muted);background:#f8fafc;border-radius:10px;padding:7px 10px;margin-bottom:10px;display:inline-flex;gap:4px;align-items:center}
+.pacts{display:flex;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+.pa{border:none;background:#f1f5f9;color:#475569;border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s}
+.pa:hover{background:#e2e8f0}
+.pa.on{background:#fee2e2;color:#dc2626}
+.pcmts{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.pc{font-size:12.5px;background:#f8fafc;border-radius:10px;padding:6px 10px;color:#334155}
+.pc b{color:var(--indigo);margin-right:4px}
+.pcin{display:flex;gap:6px;margin-top:8px}
+.pcin input{flex:1;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12.5px;font-family:inherit;outline:none;display:none;background:#fff;min-width:0}
+.pcin input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(14,165,233,.12)}
+.pcin .pcsend{border:none;background:var(--grad);color:#fff;border-radius:10px;padding:0 14px;font-weight:800;cursor:pointer;font-family:inherit;font-size:12.5px;display:none}
+.pv{background:#f8fafc;border-radius:14px;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.pvo{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+.pvo:hover{border-color:var(--indigo)}
+.pvo.picked{border-color:var(--indigo);background:#eef2ff}
+.pvo .pvt{font-size:12.5px;font-weight:800;position:relative;z-index:1;flex:0 0 auto}
+.pvo .pvb{flex:1;height:8px;border-radius:99px;background:#eef2ff;overflow:hidden}
+.pvo .pvb i{display:block;height:100%;background:var(--grad);border-radius:99px;transition:width .5s}
+.pvo .pvn{font-size:10.5px;color:var(--muted);font-weight:700;position:relative;z-index:1}
+.cmp-label{font-size:12px;font-weight:800;color:#334155}
+.cmp-imgs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cimg{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;border:2.5px solid transparent;height:80px}
+.cimg img{width:100%;height:100%;object-fit:cover;display:block}
+.cimg.sel{border-color:var(--indigo)}
+.cimg.sel::after{content:"✓";position:absolute;right:6px;top:4px;width:20px;height:20px;border-radius:50%;background:var(--indigo);color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.mystats{display:flex;gap:10px;margin-bottom:14px}
+.mystats .ms{flex:1;background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.mystats .ms b{font-size:18px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mystats .ms span{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+
 @media(prefers-reduced-motion:reduce){.blob,.pin.active .ic,.ring{animation:none}.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
@@ -497,33 +550,57 @@ a{color:inherit;text-decoration:none}
       </div>
     </section>
 
-    <!-- ========== 共创 ========== -->
+    <!-- ========== 共创社区 ========== -->
     <section class="page" id="page-collab">
       <div class="wrap">
-        <div class="section-title">👥 多人共创<small>和朋友一起规划行程</small></div>
-        <div class="card">
-          <div class="roomtop">
-            <div class="avatars" id="members"></div>
-            <div>
-              <div class="rc" style="font-size:14px;font-weight:900">房间号 <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">OLZUY4</span></div>
-              <div class="ro" style="font-size:11px;color:var(--muted)">4 人在线 · 共享素材库</div>
-            </div>
-            <span class="live" style="margin-left:auto"><span class="d"></span> 在线</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px">和朋友一起投票，选出最想去的地方 🗳</p>
-          <div id="votes"></div>
-          <button class="btn small ghost" id="addVote" style="width:100%;margin-top:6px">➕ 发起新投票</button>
+        <div class="section-title">👥 共创社区<small>晒照片 · 点赞评论 · 弹幕 · 投票</small></div>
+        <div class="subtab">
+          <button class="sub active" data-tab="feed">📡 广场动态</button>
+          <button class="sub" data-tab="room">🏠 共创房间</button>
+          <button class="sub" data-tab="mine">🙋 我的发布</button>
         </div>
-        <div class="card">
-          <h3>💬 讨论区</h3>
-          <div class="chat" id="chat"></div>
-          <div class="chatbar">
-            <input class="input" id="chatInput" placeholder="说点什么..." style="min-width:0">
-            <button class="btn small" id="sendChat">发送</button>
+
+        <div class="collab-panel" id="tab-feed">
+          <div class="dm-bar"><span class="dm-toggle" id="dmToggle">💬 弹幕开</span><div class="dm-layer" id="dmLayer"></div></div>
+          <div class="feed" id="feed"></div>
+          <button class="btn green" id="composeBtn" style="width:100%;margin-top:14px">✍️ 发一条动态</button>
+        </div>
+
+        <div class="collab-panel" id="tab-room" style="display:none">
+          <div class="card">
+            <div class="roomtop">
+              <div class="avatars" id="members"></div>
+              <div>
+                <div class="rc" style="font-size:14px;font-weight:900">房间号 <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">OLZUY4</span></div>
+                <div class="ro" style="font-size:11px;color:var(--muted)">4 人在线 · 共享素材库</div>
+              </div>
+              <span class="live" style="margin-left:auto"><span class="d"></span> 在线</span>
+            </div>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:12px">和朋友一起投票，选出最想去的地方 🗳</p>
+            <div id="votes"></div>
+            <button class="btn small ghost" id="addVote" style="width:100%;margin-top:6px">➕ 发起新投票</button>
           </div>
+          <div class="card">
+            <h3>💬 讨论区</h3>
+            <div class="chat" id="chat"></div>
+            <div class="chatbar">
+              <input class="input" id="chatInput" placeholder="说点什么..." style="min-width:0">
+              <button class="btn small" id="sendChat">发送</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="collab-panel" id="tab-mine" style="display:none">
+          <div class="mystats">
+            <div class="ms"><b id="mineCount">0 条</b><span>我的动态</span></div>
+            <div class="ms"><b id="mineLikes">0</b><span>获赞</span></div>
+            <div class="ms"><b id="mineComments">0</b><span>评论</span></div>
+          </div>
+          <div class="feed" id="mineFeed"></div>
         </div>
       </div>
     </section>
+
 
     <!-- ========== 设置 ========== -->
     <section class="page" id="page-settings">
@@ -565,6 +642,21 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
 
+  <!-- 发动态 -->
+  <div class="modal" id="composeModal">
+    <div class="mbox">
+      <div class="mh"><b>✍️ 发一条动态</b><button class="close" id="composeClose">✕</button></div>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:12px;overflow-y:auto">
+        <textarea class="input" id="composeText" rows="4" placeholder="分享你的旅行故事、照片、攻略..."></textarea>
+        <div class="cmp-label">选择照片</div>
+        <div class="cmp-imgs" id="composeImgs"></div>
+        <div class="cmp-label">📍 位置</div>
+        <input class="input" id="composeLoc" placeholder="例如：四川·九寨沟">
+        <button class="btn green" id="composeSubmit">🚀 发布</button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal" id="pickerModal">
     <div class="mbox">
       <div class="mh"><b id="pickerTitle">添加地点</b><button class="close" id="pickerClose">✕</button></div>
@@ -577,104 +669,9 @@ a{color:inherit;text-decoration:none}
 (function(){
   /* ================= 数据（JSON） ================= */
   var IMG='https://images.unsplash.com/';
-  var DATA={
-    carousel:[
-      {tag:'🏔 热门目的地',title:'九寨沟 · 人间仙境',desc:'五彩池、诺日朗瀑布，秋天层林尽染，一生必去一次。',img:IMG+'photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80',btn:'查看九寨沟攻略',dest:'sichuan'},
-      {tag:'🏯 文化之旅',title:'故宫 · 六百年紫禁城',desc:'红墙黄瓦、琉璃飞檐，穿越明清两代王朝的恢弘。',img:IMG+'photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=1600&q=80',btn:'查看北京攻略',dest:'beijing'},
-      {tag:'🏖 海岛度假',title:'三亚 · 阳光沙滩',desc:'亚龙湾的白沙碧海，蜈支洲岛的清澈海底，度假首选。',img:IMG+'photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80',btn:'查看三亚攻略',dest:'sanya'},
-      {tag:'🛣 自驾天堂',title:'独库公路 · 中国最美公路',desc:'穿越天山，一日四季，雪山草原峡谷一次看遍。',img:IMG+'photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80',btn:'查看新疆攻略',dest:'xinjiang'}
-    ],
-    destinations:[
-      {id:'chengdu',name:'成都',en:'CHENGDU',emoji:'🍲',x:34,y:52,desc:'巴适慢生活 · 火锅与熊猫',tagline:'天府之国，来了就不想走',img:IMG+'photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80',spots:[
-        {name:'宽窄巷子',cat:'景点',emoji:'🏛',summary:'清代古街巷，体验老成都慢生活',price:'免费',tip:'建议早去人少',rating:4},
-        {name:'大熊猫基地',cat:'景点',emoji:'🐼',summary:'近距离看国宝，早上熊猫最活跃',price:'55元',tip:'早点去',rating:5},
-        {name:'都江堰',cat:'景点',emoji:'⛰',summary:'两千多年水利工程，震撼必看',price:'80元',tip:'距市区1小时',rating:5},
-        {name:'马旺子川菜馆',cat:'美食',emoji:'🍜',summary:'地道川菜，水煮鱼回锅肉必点',price:'人均90',tip:'饭点排队',rating:4},
-        {name:'鹤鸣茶社',cat:'美食',emoji:'🍵',summary:'百年茶馆喝盖碗茶，下午氛围最好',price:'人均30',tip:'下午去',rating:5},
-        {name:'武侯祠',cat:'景点',emoji:'🏯',summary:'三国文化圣地，红墙竹影好出片',price:'50元',tip:'与锦里紧邻',rating:4}
-      ]},
-      {id:'beijing',name:'北京',en:'BEIJING',emoji:'🏮',x:30,y:17,desc:'六朝古都 · 皇家气派',tagline:'一座城，半部中国史',img:IMG+'photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=800&q=80',spots:[
-        {name:'故宫博物院',cat:'景点',emoji:'🏯',summary:'六百年紫禁城，世界最大宫殿群',price:'60元',tip:'周一闭馆',rating:5},
-        {name:'八达岭长城',cat:'景点',emoji:'🧱',summary:'不到长城非好汉，壮观震撼',price:'40元',tip:'早去避开人流',rating:5},
-        {name:'天坛公园',cat:'景点',emoji:'⛩',summary:'明清皇帝祭天之所，古柏参天',price:'15元',tip:'联票更划算',rating:4},
-        {name:'颐和园',cat:'景点',emoji:'🚣',summary:'皇家园林，昆明湖泛舟',price:'30元',tip:'下午光线好',rating:4},
-        {name:'全聚德烤鸭',cat:'美食',emoji:'🦆',summary:'百年老字号，正宗北京烤鸭',price:'人均180',tip:'提前订位',rating:4},
-        {name:'南锣鼓巷',cat:'景点',emoji:'🏮',summary:'老北京胡同，文艺小店聚集',price:'免费',tip:'晚上更热闹',rating:4}
-      ]},
-      {id:'shanghai',name:'上海',en:'SHANGHAI',emoji:'🌃',x:53,y:33,desc:'魔都 · 现代与复古交织',tagline:'外滩夜色，陆家嘴天际线',img:IMG+'photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=800&q=80',spots:[
-        {name:'外滩',cat:'景点',emoji:'🌃',summary:'万国建筑群 + 陆家嘴夜景',price:'免费',tip:'晚上去',rating:5},
-        {name:'陆家嘴',cat:'景点',emoji:'🏙',summary:'东方明珠、三件套摩天楼',price:'免费',tip:'登塔另收费',rating:4},
-        {name:'豫园',cat:'景点',emoji:'🏮',summary:'明代江南园林，九曲桥荷花池',price:'40元',tip:'避开周末',rating:4},
-        {name:'田子坊',cat:'景点',emoji:'🎨',summary:'石库门里的创意小街',price:'免费',tip:'傍晚有味道',rating:4},
-        {name:'上海迪士尼',cat:'景点',emoji:'🎢',summary:'梦幻城堡与烟花秀',price:'475元',tip:'买早享卡',rating:5},
-        {name:'南翔小笼',cat:'美食',emoji:'🥟',summary:'皮薄汁多，上海名点',price:'人均50',tip:'现包现蒸',rating:4}
-      ]},
-      {id:'xian',name:'西安',en:'XI\'AN',emoji:'🏯',x:40,y:36,desc:'千年古都 · 梦回长安',tagline:'十三朝古都，碳水天堂',img:IMG+'photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=800&q=80',spots:[
-        {name:'秦始皇兵马俑',cat:'景点',emoji:'⚔',summary:'世界第八大奇迹，气势恢宏',price:'120元',tip:'请讲解员',rating:5},
-        {name:'大雁塔',cat:'景点',emoji:'🗼',summary:'玄奘译经之地，喷泉广场壮观',price:'30元',tip:'晚上有喷泉',rating:4},
-        {name:'回民街',cat:'美食',emoji:'🍢',summary:'肉夹馍、泡馍、biangbiang面',price:'人均60',tip:'吃货天堂',rating:4},
-        {name:'西安城墙',cat:'景点',emoji:'🚲',summary:'保存最完整的古城墙，可骑行',price:'54元',tip:'傍晚骑行最美',rating:5},
-        {name:'大唐不夜城',cat:'景点',emoji:'🏮',summary:'盛唐夜景，不倒翁小姐姐',price:'免费',tip:'晚上去',rating:5}
-      ]},
-      {id:'sanya',name:'三亚',en:'SANYA',emoji:'🏖',x:46,y:80,desc:'热带海岛 · 阳光沙滩',tagline:'中国的马尔代夫',img:IMG+'photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',spots:[
-        {name:'亚龙湾',cat:'景点',emoji:'🏖',summary:'白沙碧海，水质清澈',price:'免费',tip:'游泳佳地',rating:5},
-        {name:'蜈支洲岛',cat:'景点',emoji:'🐠',summary:'潜水胜地，海底世界绚丽',price:'140元',tip:'含船票',rating:5},
-        {name:'天涯海角',cat:'景点',emoji:'🌴',summary:'爱情圣地，椰林海景',price:'68元',tip:'情侣打卡',rating:4},
-        {name:'南山文化旅游区',cat:'景点',emoji:'🙏',summary:'108米海上观音像',price:'108元',tip:'祈福胜地',rating:4},
-        {name:'第一市场海鲜',cat:'美食',emoji:'🦞',summary:'现买现做，海鲜大餐',price:'人均150',tip:'讲价',rating:4}
-      ]},
-      {id:'xinjiang',name:'新疆',en:'XINJIANG',emoji:'🏔',x:14,y:24,desc:'大美新疆 · 自驾天堂',tagline:'不到新疆，不知中国之大',img:IMG+'photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80',spots:[
-        {name:'喀纳斯湖',cat:'景点',emoji:'🏞',summary:'人间净土，湖水变幻莫测',price:'160元',tip:'秋天最美',rating:5},
-        {name:'天山天池',cat:'景点',emoji:'🏔',summary:'雪山环绕的高山湖泊',price:'95元',tip:'含区间车',rating:5},
-        {name:'那拉提草原',cat:'景点',emoji:'🌿',summary:'空中草原，牛羊成群',price:'95元',tip:'夏季最佳',rating:5},
-        {name:'独库公路',cat:'景点',emoji:'🛣',summary:'中国最美公路，一日四季',price:'免费',tip:'6-9月开放',rating:5},
-        {name:'大巴扎',cat:'购物',emoji:'🧕',summary:'中亚风情集市，干果手工艺品',price:'免费',tip:'可砍价',rating:4}
-      ]},
-      {id:'lhasa',name:'拉萨',en:'LHASA',emoji:'⛰',x:28,y:62,desc:'雪域圣城 · 心灵之旅',tagline:'日光之城，离天堂最近',img:IMG+'photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80',spots:[
-        {name:'布达拉宫',cat:'景点',emoji:'🏰',summary:'世界屋脊上的宫殿，宏伟神圣',price:'200元',tip:'提前预约',rating:5},
-        {name:'大昭寺',cat:'景点',emoji:'🛕',summary:'藏传佛教圣地，朝圣者云集',price:'85元',tip:'清晨转经',rating:5},
-        {name:'纳木错',cat:'景点',emoji:'🌊',summary:'西藏三大圣湖之一，湛蓝如镜',price:'120元',tip:'注意高反',rating:5},
-        {name:'羊卓雍措',cat:'景点',emoji:'💎',summary:'宝石蓝的圣湖，环湖公路美',price:'60元',tip:'海拔高',rating:5},
-        {name:'甜茶馆',cat:'美食',emoji:'☕',summary:'藏式甜茶，酥油茶配藏面',price:'人均20',tip:'体验当地生活',rating:4}
-      ]},
-      {id:'guangzhou',name:'广州',en:'GUANGZHOU',emoji:'🥟',x:50,y:64,desc:'羊城 · 美食之都',tagline:'食在广州，早茶与宵夜',img:IMG+'photo-1523374228107-231e9f4622d4?auto=format&fit=crop&w=800&q=80',spots:[
-        {name:'广州塔',cat:'景点',emoji:'🗼',summary:'小蛮腰，珠江夜景最佳观景点',price:'150元',tip:'晚上亮灯',rating:4},
-        {name:'沙面岛',cat:'景点',emoji:'🏛',summary:'欧陆风情建筑群，文艺拍照地',price:'免费',tip:'下午光好',rating:4},
-        {name:'长隆野生动物世界',cat:'景点',emoji:'🦒',summary:'亲子必去，动物大迁徙表演',price:'250元',tip:'早点入园',rating:5},
-        {name:'珠江夜游',cat:'景点',emoji:'🚢',summary:'游船看两岸灯火',price:'98元',tip:'夜景美',rating:4},
-        {name:'陶陶居早茶',cat:'美食',emoji:'🥟',summary:'百年茶楼，虾饺烧卖一流',price:'人均80',tip:'排队久',rating:5},
-        {name:'上下九步行街',cat:'购物',emoji:'🛍',summary:'老广州骑楼街，小吃聚集',price:'免费',tip:'晚上热闹',rating:4}
-      ]}
-    ],
-    guides:[
-      {icon:'🏛',name:'经典打卡线',rating:'4.9 · 12.8k 人参考',desc:'覆盖必去地标，节奏适中，第一次来首选。',days:['Day1 市区经典地标','Day2 历史文化深度游','Day3 周边一日游','Day4 休闲购物返程']},
-      {icon:'🍜',name:'美食探店线',rating:'4.8 · 9.6k 人参考',desc:'以吃为主线，串起老字号与街头小吃。',days:['Day1 老字号早茶','Day2 夜市小吃','Day3 网红餐厅','Day4 伴手礼采购']},
-      {icon:'👨‍👩‍👧',name:'亲子休闲线',rating:'4.7 · 6.1k 人参考',desc:'节奏舒缓，乐园、公园、动物园为主。',days:['Day1 动物园','Day2 科技馆+公园','Day3 乐园全日','Day4 海边/湖畔放松']},
-      {icon:'📷',name:'人文摄影线',rating:'4.6 · 3.2k 人参考',desc:'古建、老街、夜景，摄影爱好者专属。',days:['Day1 古建晨光','Day2 老街人文','Day3 日落+夜景','Day4 博物馆+街拍']}
-    ],
-    features:[
-      {ic:'🤖',t:'AI 智能规划',d:'粘贴小红书笔记，AI 自动拆分归类，生成结构化行程'},
-      {ic:'🗺',t:'真实地图',d:'高德地图标注地点、路线连线、交通耗时一目了然'},
-      {ic:'📅',t:'灵活编排',d:'点 + 添加地点，自由安排每一天的行程顺序'},
-      {ic:'👥',t:'多人共创',d:'和朋友同房间投票、讨论，一起决定去哪儿'}
-    ],
-    stats:[
-      {v:'1,200+',k:'收录目的地'},{v:'8 类',k:'地点分类'},{v:'36 个',k:'热门景区'},{v:'99%',k:'AI 识别准确率'}
-    ],
-    members:[{av:'🙋',n:'我'},{av:'😎',n:'小明'},{av:'🧳',n:'Amy'},{av:'🐱',n:'小猫咪'}],
-    votes:[
-      {id:'v1',name:'宽窄巷子',emoji:'🏛',bg:'#e0f2fe',up:18,down:2,my:null},
-      {id:'v2',name:'都江堰',emoji:'⛰',bg:'#d1fae5',up:15,down:1,my:null},
-      {id:'v3',name:'建设路小吃街',emoji:'🍢',bg:'#fff7ed',up:12,down:4,my:null}
-    ],
-    msgs:[
-      {name:'小明',av:'😎',text:'都江堰一定要去！太震撼了'},
-      {name:'Amy',av:'🧳',text:'建议早点去熊猫基地，人少'},
-      {name:'我',av:'🙋',text:'晚上去建设路吃小吃怎么样？'}
-    ],
-    cats:{'景点':['#e0f2fe','🏛'],'美食':['#fff7ed','🍜'],'住宿':['#f0f9ff','🏨'],'购物':['#fdf4ff','🛍'],'交通':['#f5f3ff','🚇'],'贴士':['#fef9c3','🎫']}
-  };
-
+  var DATA={};
+  var FEED_IMAGES=[];
+  var DANMAKU=[];
   var state={destId:'chengdu',dayFilter:'all',pickerDay:null};
 
   /* ================= 基础 ================= */
@@ -851,7 +848,7 @@ a{color:inherit;text-decoration:none}
     if(!d._assign[day])d._assign[day]=[];
     if(d._assign[day].indexOf(name)>-1){showToast('⚠️ 已在 Day '+day+' 中');return;}
     d._assign[day].push(name);
-    renderDays();
+    renderDays();savePlan();
     showToast('✅ '+name+' 已加入 Day '+day);
   }
   function removeFromDay(day,name){
@@ -860,7 +857,7 @@ a{color:inherit;text-decoration:none}
       var i=d._assign[day].indexOf(name);
       if(i>-1)d._assign[day].splice(i,1);
     }
-    renderDays();
+    renderDays();savePlan();
     showToast('↩️ '+name+' 已移出 Day '+day);
   }
 
@@ -988,17 +985,9 @@ a{color:inherit;text-decoration:none}
 
 
   /* ================= 限时特惠 ================= */
-  var DEALS=[
-    {img:IMG+'photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=600&q=80',city:'🏮 北京',title:'故宫+八达岭长城 2日深度游',old:'¥1,599',price:'¥1,299',tag:'8.2折',save:'省 ¥300',meta:'🚌 含交通 · ⭐4.9 · 已售 2.3k'},
-    {img:IMG+'photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80',city:'🍲 成都',title:'九寨沟+黄龙 4日纯玩团',old:'¥2,880',price:'¥2,199',tag:'7.6折',save:'省 ¥681',meta:'🏨 含4晚住宿 · ⭐4.8 · 已售 1.8k'},
-    {img:IMG+'photo-1523374228107-231e9f4622d4?auto=format&fit=crop&w=600&q=80',city:'🏖 三亚',title:'亚龙湾五星酒店 3晚自由行',old:'¥3,688',price:'¥2,499',tag:'6.8折',save:'省 ¥1,189',meta:'✈ 含机票 · ⭐4.9 · 已售 3.1k'},
-    {img:IMG+'photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=600&q=80',city:'🏯 西安',title:'兵马俑+华山 3日游',old:'¥1,998',price:'¥1,599',tag:'8.0折',save:'省 ¥399',meta:'🚌 含门票 · ⭐4.7 · 已售 980'},
-    {img:IMG+'photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80',city:'🏔 新疆',title:'北疆环线 7日摄影团',old:'¥5,980',price:'¥4,688',tag:'7.8折',save:'省 ¥1,292',meta:'📷 摄影领队 · ⭐4.9 · 已售 420'},
-    {img:IMG+'photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80',city:'⛰ 拉萨',title:'西藏全景 6日深度游',old:'¥4,280',price:'¥3,399',tag:'7.9折',save:'省 ¥881',meta:'🏨 含高反保障 · ⭐4.8 · 已售 760'}
-  ];
   function renderDeals(){
     var g=document.getElementById('dealGrid');g.innerHTML='';
-    DEALS.forEach(function(d){
+    (DATA.deals||[]).forEach(function(d){
       var html='<div class="deal">'+
         '<div class="dimg"><img src="'+d.img+'" alt="" loading="lazy" onerror="this.style.display=\'none\'"><span class="dbadge">'+d.tag+'</span><span class="dcity-badge">'+d.city+'</span></div>'+
         '<div class="dinfo"><div class="dt">'+d.title+'</div><div class="dmeta">'+d.meta+'</div>'+
@@ -1086,12 +1075,249 @@ a{color:inherit;text-decoration:none}
     document.getElementById('aiInput').addEventListener('keydown',function(e){if(e.key==='Enter')aiSend(document.getElementById('aiInput').value);});
   }
 
-  renderHero();renderDests();renderMap();renderMapPanel();renderStats();renderFeats();
-  renderMats();renderDays();renderGuides();renderMembers();renderVotes();renderChat();
-  renderDeals();tickCd();setInterval(tickCd,1000);
-  initAI();
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
-  heroAuto();
+
+  /* ================= 本地临时存储 ================= */
+  var localState={liked:{},comments:{},votes:{},myPosts:[],plan:{assigns:{}}};
+  function saveLocal(){try{localStorage.setItem('tripmap_feed_v1',JSON.stringify(localState));}catch(_){}}
+  function loadLocal(){
+    try{
+      var raw=localStorage.getItem('tripmap_feed_v1');
+      if(raw){var o=JSON.parse(raw);
+        localState.liked=o.liked||{};localState.comments=o.comments||{};
+        localState.votes=o.votes||{};
+        if(Array.isArray(o.myPosts))localState.myPosts=o.myPosts;
+        if(o.plan)localState.plan=o.plan;
+      }
+    }catch(_){}
+  }
+  function applyPlanLocal(){
+    if(!DATA.destinations)return;
+    var a=localState.plan.assigns||{};
+    DATA.destinations.forEach(function(d){if(a[d.id])d._assign=a[d.id];});
+  }
+  function savePlan(){
+    var a={};
+    DATA.destinations.forEach(function(d){if(d._assign&&Object.keys(d._assign).length)a[d.id]=d._assign;});
+    localState.plan.assigns=a;saveLocal();
+  }
+
+  /* ================= 共创社区 ================= */
+  function allFeeds(){
+    var list=(DATA.feeds||[]).slice();
+    localState.myPosts.forEach(function(p){list.unshift(p);});
+    return list;
+  }
+  function feedPostHTML(p){
+    var liked=!!localState.liked[p.id];
+    var cmts=localState.comments[p.id]||p.comments||[];
+    var imgs=(p.images||[]).map(function(u){return '<img src="'+u+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">';}).join('');
+    var voteHtml='';
+    if(p.vote){
+      var max=1;
+      p.vote.options.forEach(function(o){if(o.v>max)max=o.v;});
+      voteHtml='<div class="pv">'+p.vote.options.map(function(o,i){
+        var w=Math.round(o.v/max*100);
+        return '<div class="pvo'+(localState.votes[p.id]===i?' picked':'')+'" data-oi="'+i+'"><span class="pvt">'+o.t+'</span><span class="pvb"><i style="width:'+w+'%"></i></span><span class="pvn">'+o.v+' 票</span></div>';
+      }).join('')+'</div>';
+    }
+    return '<div class="post" data-id="'+p.id+'">'+
+      '<div class="pu"><span class="pav">'+p.av+'</span><div><b>'+esc(p.user)+'</b><div class="pt">'+p.time+'</div></div>'+(p.mine?'<span class="pmine">我的</span>':'')+'</div>'+
+      (p.text?'<div class="ptext">'+esc(p.text)+'</div>':'')+
+      (imgs?'<div class="pimg">'+imgs+'</div>':'')+
+      '<div class="ploc">📍 '+esc(p.loc||'未知地点')+'</div>'+
+      voteHtml+
+      '<div class="pacts">'+
+        '<button class="pa like'+(liked?' on':'')+'" data-act="like">👍 '+((p.likes||0)+(liked?1:0))+'</button>'+
+        '<button class="pa" data-act="comment">💬 '+cmts.length+'</button>'+
+        '<button class="pa" data-act="share">🔁 '+(p.shares||0)+'</button>'+
+      '</div>'+
+      '<div class="pcmts">'+
+        cmts.map(function(c){return '<div class="pc"><b>'+esc(c.u)+'</b> '+esc(c.t)+'</div>';}).join('')+
+      '</div>'+
+      '<div class="pcin"><input data-cin placeholder="说点什么..." autocomplete="off"><button class="pcsend" data-csend>评论</button></div>'+
+    '</div>';
+  }
+  function renderFeed(){
+    var el=document.getElementById('feed');el.innerHTML='';
+    allFeeds().forEach(function(p){el.insertAdjacentHTML('beforeend',feedPostHTML(p));});
+    bindFeed('#feed');
+  }
+  function renderMine(){
+    var el=document.getElementById('mineFeed');el.innerHTML='';
+    var mine=allFeeds().filter(function(p){return p.mine;});
+    if(!mine.length)el.innerHTML='<div class="empty"><div class="ic">📷</div>还没有发布动态，点「发一条动态」晒出你的旅行吧！</div>';
+    mine.forEach(function(p){el.insertAdjacentHTML('beforeend',feedPostHTML(p));});
+    bindFeed('#mineFeed');
+    var likes=0,cmts=0;
+    mine.forEach(function(p){likes+=(p.likes||0);cmts+=(localState.comments[p.id]||p.comments||[]).length;});
+    document.getElementById('mineCount').textContent=mine.length+' 条';
+    document.getElementById('mineLikes').textContent=likes;
+    document.getElementById('mineComments').textContent=cmts;
+  }
+  function bindFeed(rootSel){
+    Array.prototype.slice.call(document.querySelectorAll((rootSel||'#feed')+' .post')).forEach(function(post){
+      if(post.__fb)return;post.__fb=true;
+      var id=post.dataset.id;
+      Array.prototype.slice.call(post.querySelectorAll('.pa')).forEach(function(b){
+        b.addEventListener('click',function(){
+          var act=b.dataset.act;
+          if(act==='like'){
+            var on=localState.liked[id];localState.liked[id]=!on;saveLocal();renderFeed();renderMine();
+            showToast(on?'👎 已取消点赞':'👍 点赞成功');
+          }else if(act==='comment'){
+            var cin=post.querySelector('[data-cin]');
+            var show=cin.style.display!=='block';
+            cin.style.display=show?'block':'none';
+            post.querySelector('[data-csend]').style.display=show?'block':'none';
+            if(show)cin.focus();
+          }else if(act==='share'){
+            showToast('🔁 已复制分享链接（演示）');
+          }
+        });
+      });
+      Array.prototype.slice.call(post.querySelectorAll('[data-csend]')).forEach(function(b){
+        b.addEventListener('click',function(){
+          var inp=post.querySelector('[data-cin]'),v=inp.value.trim();
+          if(!v)return;
+          if(!localState.comments[id])localState.comments[id]=[];
+          localState.comments[id].push({u:'我',av:'🙋',t:v});
+          inp.value='';saveLocal();renderFeed();renderMine();
+          showToast('💬 评论成功');
+        });
+      });
+      Array.prototype.slice.call(post.querySelectorAll('.pvo')).forEach(function(o){
+        o.addEventListener('click',function(){
+          var oi=Number(o.dataset.oi);
+          var p=null;allFeeds().forEach(function(x){if(x.id===id)p=x;});
+          if(p&&p.vote){
+            if(localState.votes[id]!==undefined&&localState.votes[id]!==null)p.vote.options[localState.votes[id]].v--;
+            if(localState.votes[id]===oi){localState.votes[id]=null;}
+            else{localState.votes[id]=oi;p.vote.options[oi].v++;}
+            saveLocal();renderFeed();
+            showToast('🗳 投票成功');
+          }
+        });
+      });
+    });
+  }
+
+  /* ================= 弹幕 ================= */
+  var dmStarted=false,dmOn=true;
+  function startDanmaku(){
+    if(dmStarted)return;dmStarted=true;
+    setInterval(function(){
+      if(!dmOn)return;
+      var layer=document.getElementById('dmLayer');if(!layer||!DANMAKU.length)return;
+      var t=DANMAKU[Math.floor(Math.random()*DANMAKU.length)];
+      var s=document.createElement('span');s.className='dm';s.textContent=t;
+      s.style.animationDuration=(5+Math.random()*4)+'s';
+      s.style.top=(2+Math.floor(Math.random()*2)*14)+'px';
+      layer.appendChild(s);
+      setTimeout(function(){if(s.parentNode)s.parentNode.removeChild(s);},10000);
+    },2600);
+  }
+
+  /* ================= 发动态 ================= */
+  var composeSel=0;
+  function renderComposeImgs(){
+    var el=document.getElementById('composeImgs');el.innerHTML='';
+    FEED_IMAGES.forEach(function(u,i){
+      var d=document.createElement('div');d.className='cimg'+(i===0?' sel':'');d.dataset.i=i;
+      d.innerHTML='<img src="'+u+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
+      d.addEventListener('click',function(){
+        Array.prototype.slice.call(el.children).forEach(function(x){x.classList.remove('sel');});
+        d.classList.add('sel');composeSel=i;
+      });
+      el.appendChild(d);
+    });
+    var locs=DATA.feedLocs||['四川·成都'];
+    document.getElementById('composeLoc').value=locs[0];
+  }
+
+  /* ================= 二级栏目 + 静态绑定 ================= */
+  function bindSubTabs(){
+    Array.prototype.slice.call(document.querySelectorAll('.subtab .sub')).forEach(function(b){
+      b.addEventListener('click',function(){
+        Array.prototype.slice.call(document.querySelectorAll('.subtab .sub')).forEach(function(x){x.classList.remove('active');});
+        b.classList.add('active');
+        var t=b.dataset.tab;
+        ['feed','room','mine'].forEach(function(k){
+          var p=document.getElementById('tab-'+k);
+          if(p)p.style.display=(k===t)?'':'none';
+        });
+      });
+    });
+  }
+  function initCommunity(){
+    bindSubTabs();
+    document.getElementById('dmToggle').addEventListener('click',function(){
+      dmOn=!dmOn;this.classList.toggle('off',!dmOn);
+      this.textContent=dmOn?'💬 弹幕开':'💬 弹幕关';
+      showToast(dmOn?'💬 弹幕已开启':'💬 弹幕已关闭');
+    });
+    document.getElementById('composeBtn').addEventListener('click',function(){document.getElementById('composeModal').classList.add('show');});
+    document.getElementById('composeClose').addEventListener('click',function(){document.getElementById('composeModal').classList.remove('show');});
+    document.getElementById('composeModal').addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
+    document.getElementById('composeSubmit').addEventListener('click',function(){
+      var txt=document.getElementById('composeText').value.trim();
+      var loc=document.getElementById('composeLoc').value.trim()||'未知地点';
+      var img=FEED_IMAGES[composeSel]||FEED_IMAGES[0];
+      var post={id:'my'+Date.now(),user:'我',av:'🙋',mine:true,time:'刚刚',images:img?[img]:[],text:txt||'分享一条旅行动态～',loc:loc,likes:0,shares:0,comments:[]};
+      localState.myPosts.unshift(post);saveLocal();
+      document.getElementById('composeText').value='';
+      document.getElementById('composeModal').classList.remove('show');
+      renderFeed();renderMine();
+      showToast('✅ 动态已发布');
+    });
+    initAI();
+  }
+
+  /* ================= 离线兜底数据 ================= */
+  var FALLBACK={
+    carousel:[{tag:'🌏 欢迎',title:'途迹 TripMap · AI 旅游攻略',desc:'粘贴小红书笔记，AI 一键生成行程（离线版）',img:'',btn:'查看攻略',dest:'chengdu'}],
+    destinations:[{id:'chengdu',name:'成都',en:'CHENGDU',emoji:'🍲',x:34,y:52,desc:'巴适慢生活',tagline:'天府之国',img:'',spots:[
+      {name:'宽窄巷子',cat:'景点',emoji:'🏛',summary:'清代古街巷',price:'免费',tip:'早去人少',rating:4},
+      {name:'大熊猫基地',cat:'景点',emoji:'🐼',summary:'看国宝',price:'55元',tip:'早点去',rating:5}
+    ]}],
+    deals:[{img:'',city:'🍲 成都',title:'九寨沟+黄龙 4日纯玩团',old:'¥2,880',price:'¥2,199',tag:'7.6折',save:'省 ¥681',meta:'🏨 含住宿 · ⭐4.8'}],
+    guides:[{icon:'🏛',name:'经典打卡线',rating:'4.9 · 12.8k',desc:'覆盖必去地标。',days:['Day1 市区地标','Day2 深度游','Day3 周边一日','Day4 返程']}],
+    features:[{ic:'🤖',t:'AI 智能规划',d:'笔记一键生成行程'},{ic:'🗺',t:'真实地图',d:'标注路线连线'},{ic:'📅',t:'灵活编排',d:'点+自由安排'},{ic:'👥',t:'共创社区',d:'晒照评论弹幕'}],
+    stats:[{v:'1,200+',k:'收录目的地'},{v:'8 类',k:'地点分类'},{v:'36 个',k:'热门景区'},{v:'99%',k:'AI 识别'}],
+    members:[{av:'🙋',n:'我'},{av:'😎',n:'小明'},{av:'🧳',n:'Amy'},{av:'🐱',n:'小猫咪'}],
+    votes:[{id:'v1',name:'宽窄巷子',emoji:'🏛',bg:'#e0f2fe',up:18,down:2,my:null}],
+    msgs:[{name:'小明',av:'😎',text:'都江堰一定要去！'}],
+    cats:{'景点':['#e0f2fe','🏛'],'美食':['#fff7ed','🍜'],'住宿':['#f0f9ff','🏨'],'购物':['#fdf4ff','🛍'],'交通':['#f5f3ff','🚇'],'贴士':['#fef9c3','🎫']},
+    feeds:[{id:'fb1',user:'我',av:'🙋',mine:true,time:'刚刚',images:[],text:'欢迎来到途迹共创社区（离线兜底版）',loc:'线上',likes:0,shares:0,comments:[]}],
+    danmaku:['好美！','想去+1','绝绝子'],
+    feedImages:[],feedLocs:['四川·成都']
+  };
+
+
+  /* ================= 启动：加载 data/db.json ================= */
+  function renderAll(){
+    renderHero();renderDests();renderMap();renderMapPanel();renderStats();renderFeats();
+    renderMats();renderDays();renderGuides();renderMembers();renderVotes();renderChat();
+    renderDeals();tickCd();setInterval(tickCd,1000);
+    renderFeed();renderMine();renderComposeImgs();
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+    heroAuto();
+  }
+  loadLocal();
+  initCommunity();
+  applyPlanLocal();
+  fetch('data/db.json').then(function(r){if(!r.ok)throw new Error('http');return r.json();})
+    .then(function(j){
+      if(j&&j.destinations){DATA=j;FEED_IMAGES=j.feedImages||[];DANMAKU=j.danmaku||[];}
+      applyPlanLocal();
+      renderAll();startDanmaku();
+    })
+    .catch(function(){
+      if(!DATA.destinations||!DATA.destinations.length)DATA=FALLBACK;
+      FEED_IMAGES=DATA.feedImages||FEED_IMAGES;DANMAKU=DATA.danmaku||DANMAKU;
+      applyPlanLocal();
+      renderAll();startDanmaku();
+    });
+
 })();
 </script>
 </body>
