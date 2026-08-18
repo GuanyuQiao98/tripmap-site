@@ -53,7 +53,8 @@
           "summary": "清代古街巷，体验老成都慢生活",
           "price": "免费",
           "tip": "建议早去人少",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "大熊猫基地",
@@ -62,7 +63,8 @@
           "summary": "近距离看国宝，早上熊猫最活跃",
           "price": "55元",
           "tip": "早点去",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "都江堰",
@@ -71,7 +73,8 @@
           "summary": "两千多年水利工程，震撼必看",
           "price": "80元",
           "tip": "距市区1小时",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "马旺子川菜馆",
@@ -80,7 +83,8 @@
           "summary": "地道川菜，水煮鱼回锅肉必点",
           "price": "人均90",
           "tip": "饭点排队",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "鹤鸣茶社",
@@ -89,7 +93,8 @@
           "summary": "百年茶馆喝盖碗茶，下午氛围最好",
           "price": "人均30",
           "tip": "下午去",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "武侯祠",
@@ -98,7 +103,121 @@
           "summary": "三国文化圣地，红墙竹影好出片",
           "price": "50元",
           "tip": "与锦里紧邻",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80"
+        }
+      ],
+      "banner": "https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80",
+      "routes": [
+        {
+          "name": "成都 经典深度游",
+          "days": "4天3晚",
+          "price": "¥1,299",
+          "rating": "4.8",
+          "tags": [
+            "纯玩无购物",
+            "含门票"
+          ],
+          "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80",
+          "sold": 5000
+        },
+        {
+          "name": "成都 轻松休闲游",
+          "days": "3天2晚",
+          "price": "¥899",
+          "rating": "4.7",
+          "tags": [
+            "自由行",
+            "可拆分"
+          ],
+          "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80",
+          "sold": 5300
+        }
+      ],
+      "hotels": [
+        {
+          "name": "成都 市中心全景酒店",
+          "price": "¥420/晚",
+          "rating": "4.7",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "含早餐",
+            "可取消"
+          ]
+        },
+        {
+          "name": "成都 轻奢设计师酒店",
+          "price": "¥360/晚",
+          "rating": "4.8",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "免费停车",
+            "亲子友好"
+          ]
+        }
+      ],
+      "acts": [
+        {
+          "name": "成都 人气一日游",
+          "price": "¥199",
+          "rating": "4.6",
+          "tag": "含接送",
+          "tags": [
+            "含接送",
+            "中文导览"
+          ],
+          "img": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 3 小时 · 1000+ 人参加"
+        },
+        {
+          "name": "成都 摄影小团体验",
+          "price": "¥279",
+          "rating": "4.7",
+          "tag": "小团",
+          "tags": [
+            "小团",
+            "摄影领队"
+          ],
+          "img": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 4 小时 · 1200+ 人参加"
+        },
+        {
+          "name": "成都 夜游观光体验",
+          "price": "¥359",
+          "rating": "4.8",
+          "tag": "夜游",
+          "tags": [
+            "夜游",
+            "免费取消"
+          ],
+          "img": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 5 小时 · 1400+ 人参加"
+        }
+      ],
+      "packs": [
+        {
+          "name": "成都 经典套餐（含 3 大景点）",
+          "price": "¥499",
+          "old": "¥699",
+          "rating": "4.9",
+          "tags": [
+            "景点通票",
+            "含接送"
+          ],
+          "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          "name": "成都 深度美食套餐",
+          "price": "¥299",
+          "old": "¥399",
+          "rating": "4.8",
+          "tags": [
+            "当地美食",
+            "小团"
+          ],
+          "img": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=700&q=80"
         }
       ]
     },
@@ -120,7 +239,8 @@
           "summary": "六百年紫禁城，世界最大宫殿群",
           "price": "60元",
           "tip": "周一闭馆",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "八达岭长城",
@@ -129,7 +249,8 @@
           "summary": "不到长城非好汉，壮观震撼",
           "price": "40元",
           "tip": "早去避开人流",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "天坛公园",
@@ -138,7 +259,8 @@
           "summary": "明清皇帝祭天之所，古柏参天",
           "price": "15元",
           "tip": "联票更划算",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "颐和园",
@@ -147,7 +269,8 @@
           "summary": "皇家园林，昆明湖泛舟",
           "price": "30元",
           "tip": "下午光线好",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "全聚德烤鸭",
@@ -156,7 +279,8 @@
           "summary": "百年老字号，正宗北京烤鸭",
           "price": "人均180",
           "tip": "提前订位",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "南锣鼓巷",
@@ -165,7 +289,121 @@
           "summary": "老北京胡同，文艺小店聚集",
           "price": "免费",
           "tip": "晚上更热闹",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=600&q=80"
+        }
+      ],
+      "banner": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=800&q=80",
+      "routes": [
+        {
+          "name": "北京 经典深度游",
+          "days": "4天3晚",
+          "price": "¥1,299",
+          "rating": "4.8",
+          "tags": [
+            "纯玩无购物",
+            "含门票"
+          ],
+          "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=700&q=80",
+          "sold": 5700
+        },
+        {
+          "name": "北京 轻松休闲游",
+          "days": "3天2晚",
+          "price": "¥899",
+          "rating": "4.7",
+          "tags": [
+            "自由行",
+            "可拆分"
+          ],
+          "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=700&q=80",
+          "sold": 6000
+        }
+      ],
+      "hotels": [
+        {
+          "name": "北京 市中心全景酒店",
+          "price": "¥450/晚",
+          "rating": "4.7",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "含早餐",
+            "可取消"
+          ]
+        },
+        {
+          "name": "北京 轻奢设计师酒店",
+          "price": "¥385/晚",
+          "rating": "4.8",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "免费停车",
+            "亲子友好"
+          ]
+        }
+      ],
+      "acts": [
+        {
+          "name": "北京 人气一日游",
+          "price": "¥239",
+          "rating": "4.6",
+          "tag": "含接送",
+          "tags": [
+            "含接送",
+            "中文导览"
+          ],
+          "img": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 3 小时 · 1500+ 人参加"
+        },
+        {
+          "name": "北京 摄影小团体验",
+          "price": "¥319",
+          "rating": "4.7",
+          "tag": "小团",
+          "tags": [
+            "小团",
+            "摄影领队"
+          ],
+          "img": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 4 小时 · 1700+ 人参加"
+        },
+        {
+          "name": "北京 夜游观光体验",
+          "price": "¥399",
+          "rating": "4.8",
+          "tag": "夜游",
+          "tags": [
+            "夜游",
+            "免费取消"
+          ],
+          "img": "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 5 小时 · 1900+ 人参加"
+        }
+      ],
+      "packs": [
+        {
+          "name": "北京 经典套餐（含 3 大景点）",
+          "price": "¥559",
+          "old": "¥759",
+          "rating": "4.9",
+          "tags": [
+            "景点通票",
+            "含接送"
+          ],
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          "name": "北京 深度美食套餐",
+          "price": "¥339",
+          "old": "¥439",
+          "rating": "4.8",
+          "tags": [
+            "当地美食",
+            "小团"
+          ],
+          "img": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80"
         }
       ]
     },
@@ -187,7 +425,8 @@
           "summary": "万国建筑群 + 陆家嘴夜景",
           "price": "免费",
           "tip": "晚上去",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "陆家嘴",
@@ -196,7 +435,8 @@
           "summary": "东方明珠、三件套摩天楼",
           "price": "免费",
           "tip": "登塔另收费",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "豫园",
@@ -205,7 +445,8 @@
           "summary": "明代江南园林，九曲桥荷花池",
           "price": "40元",
           "tip": "避开周末",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "田子坊",
@@ -214,7 +455,8 @@
           "summary": "石库门里的创意小街",
           "price": "免费",
           "tip": "傍晚有味道",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "上海迪士尼",
@@ -223,7 +465,8 @@
           "summary": "梦幻城堡与烟花秀",
           "price": "475元",
           "tip": "买早享卡",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "南翔小笼",
@@ -232,7 +475,121 @@
           "summary": "皮薄汁多，上海名点",
           "price": "人均50",
           "tip": "现包现蒸",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=600&q=80"
+        }
+      ],
+      "banner": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=800&q=80",
+      "routes": [
+        {
+          "name": "上海 经典深度游",
+          "days": "4天3晚",
+          "price": "¥1,299",
+          "rating": "4.8",
+          "tags": [
+            "纯玩无购物",
+            "含门票"
+          ],
+          "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80",
+          "sold": 6400
+        },
+        {
+          "name": "上海 轻松休闲游",
+          "days": "3天2晚",
+          "price": "¥899",
+          "rating": "4.7",
+          "tags": [
+            "自由行",
+            "可拆分"
+          ],
+          "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80",
+          "sold": 6700
+        }
+      ],
+      "hotels": [
+        {
+          "name": "上海 市中心全景酒店",
+          "price": "¥480/晚",
+          "rating": "4.7",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "含早餐",
+            "可取消"
+          ]
+        },
+        {
+          "name": "上海 轻奢设计师酒店",
+          "price": "¥410/晚",
+          "rating": "4.8",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "免费停车",
+            "亲子友好"
+          ]
+        }
+      ],
+      "acts": [
+        {
+          "name": "上海 人气一日游",
+          "price": "¥279",
+          "rating": "4.6",
+          "tag": "含接送",
+          "tags": [
+            "含接送",
+            "中文导览"
+          ],
+          "img": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 3 小时 · 2000+ 人参加"
+        },
+        {
+          "name": "上海 摄影小团体验",
+          "price": "¥359",
+          "rating": "4.7",
+          "tag": "小团",
+          "tags": [
+            "小团",
+            "摄影领队"
+          ],
+          "img": "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 4 小时 · 2200+ 人参加"
+        },
+        {
+          "name": "上海 夜游观光体验",
+          "price": "¥439",
+          "rating": "4.8",
+          "tag": "夜游",
+          "tags": [
+            "夜游",
+            "免费取消"
+          ],
+          "img": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 5 小时 · 2400+ 人参加"
+        }
+      ],
+      "packs": [
+        {
+          "name": "上海 经典套餐（含 3 大景点）",
+          "price": "¥619",
+          "old": "¥819",
+          "rating": "4.9",
+          "tags": [
+            "景点通票",
+            "含接送"
+          ],
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          "name": "上海 深度美食套餐",
+          "price": "¥379",
+          "old": "¥479",
+          "rating": "4.8",
+          "tags": [
+            "当地美食",
+            "小团"
+          ],
+          "img": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80"
         }
       ]
     },
@@ -254,7 +611,8 @@
           "summary": "世界第八大奇迹，气势恢宏",
           "price": "120元",
           "tip": "请讲解员",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "大雁塔",
@@ -263,7 +621,8 @@
           "summary": "玄奘译经之地，喷泉广场壮观",
           "price": "30元",
           "tip": "晚上有喷泉",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "回民街",
@@ -272,7 +631,8 @@
           "summary": "肉夹馍、泡馍、biangbiang面",
           "price": "人均60",
           "tip": "吃货天堂",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "西安城墙",
@@ -281,7 +641,8 @@
           "summary": "保存最完整的古城墙，可骑行",
           "price": "54元",
           "tip": "傍晚骑行最美",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "大唐不夜城",
@@ -290,7 +651,121 @@
           "summary": "盛唐夜景，不倒翁小姐姐",
           "price": "免费",
           "tip": "晚上去",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=600&q=80"
+        }
+      ],
+      "banner": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=800&q=80",
+      "routes": [
+        {
+          "name": "西安 经典深度游",
+          "days": "4天3晚",
+          "price": "¥1,299",
+          "rating": "4.8",
+          "tags": [
+            "纯玩无购物",
+            "含门票"
+          ],
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=700&q=80",
+          "sold": 7100
+        },
+        {
+          "name": "西安 轻松休闲游",
+          "days": "3天2晚",
+          "price": "¥899",
+          "rating": "4.7",
+          "tags": [
+            "自由行",
+            "可拆分"
+          ],
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=700&q=80",
+          "sold": 7400
+        }
+      ],
+      "hotels": [
+        {
+          "name": "西安 市中心全景酒店",
+          "price": "¥510/晚",
+          "rating": "4.7",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "含早餐",
+            "可取消"
+          ]
+        },
+        {
+          "name": "西安 轻奢设计师酒店",
+          "price": "¥435/晚",
+          "rating": "4.8",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "免费停车",
+            "亲子友好"
+          ]
+        }
+      ],
+      "acts": [
+        {
+          "name": "西安 人气一日游",
+          "price": "¥319",
+          "rating": "4.6",
+          "tag": "含接送",
+          "tags": [
+            "含接送",
+            "中文导览"
+          ],
+          "img": "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 3 小时 · 2500+ 人参加"
+        },
+        {
+          "name": "西安 摄影小团体验",
+          "price": "¥399",
+          "rating": "4.7",
+          "tag": "小团",
+          "tags": [
+            "小团",
+            "摄影领队"
+          ],
+          "img": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 4 小时 · 2700+ 人参加"
+        },
+        {
+          "name": "西安 夜游观光体验",
+          "price": "¥479",
+          "rating": "4.8",
+          "tag": "夜游",
+          "tags": [
+            "夜游",
+            "免费取消"
+          ],
+          "img": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 5 小时 · 2900+ 人参加"
+        }
+      ],
+      "packs": [
+        {
+          "name": "西安 经典套餐（含 3 大景点）",
+          "price": "¥679",
+          "old": "¥879",
+          "rating": "4.9",
+          "tags": [
+            "景点通票",
+            "含接送"
+          ],
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          "name": "西安 深度美食套餐",
+          "price": "¥419",
+          "old": "¥519",
+          "rating": "4.8",
+          "tags": [
+            "当地美食",
+            "小团"
+          ],
+          "img": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=700&q=80"
         }
       ]
     },
@@ -312,7 +787,8 @@
           "summary": "白沙碧海，水质清澈",
           "price": "免费",
           "tip": "游泳佳地",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "蜈支洲岛",
@@ -321,7 +797,8 @@
           "summary": "潜水胜地，海底世界绚丽",
           "price": "140元",
           "tip": "含船票",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "天涯海角",
@@ -330,7 +807,8 @@
           "summary": "爱情圣地，椰林海景",
           "price": "68元",
           "tip": "情侣打卡",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "南山文化旅游区",
@@ -339,7 +817,8 @@
           "summary": "108米海上观音像",
           "price": "108元",
           "tip": "祈福胜地",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "第一市场海鲜",
@@ -348,7 +827,121 @@
           "summary": "现买现做，海鲜大餐",
           "price": "人均150",
           "tip": "讲价",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80"
+        }
+      ],
+      "banner": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+      "routes": [
+        {
+          "name": "三亚 经典深度游",
+          "days": "4天3晚",
+          "price": "¥1,299",
+          "rating": "4.8",
+          "tags": [
+            "纯玩无购物",
+            "含门票"
+          ],
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=700&q=80",
+          "sold": 7800
+        },
+        {
+          "name": "三亚 轻松休闲游",
+          "days": "3天2晚",
+          "price": "¥899",
+          "rating": "4.7",
+          "tags": [
+            "自由行",
+            "可拆分"
+          ],
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=700&q=80",
+          "sold": 8100
+        }
+      ],
+      "hotels": [
+        {
+          "name": "三亚 市中心全景酒店",
+          "price": "¥540/晚",
+          "rating": "4.7",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "含早餐",
+            "可取消"
+          ]
+        },
+        {
+          "name": "三亚 轻奢设计师酒店",
+          "price": "¥460/晚",
+          "rating": "4.8",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "免费停车",
+            "亲子友好"
+          ]
+        }
+      ],
+      "acts": [
+        {
+          "name": "三亚 人气一日游",
+          "price": "¥359",
+          "rating": "4.6",
+          "tag": "含接送",
+          "tags": [
+            "含接送",
+            "中文导览"
+          ],
+          "img": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 3 小时 · 3000+ 人参加"
+        },
+        {
+          "name": "三亚 摄影小团体验",
+          "price": "¥439",
+          "rating": "4.7",
+          "tag": "小团",
+          "tags": [
+            "小团",
+            "摄影领队"
+          ],
+          "img": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 4 小时 · 3200+ 人参加"
+        },
+        {
+          "name": "三亚 夜游观光体验",
+          "price": "¥519",
+          "rating": "4.8",
+          "tag": "夜游",
+          "tags": [
+            "夜游",
+            "免费取消"
+          ],
+          "img": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 5 小时 · 3400+ 人参加"
+        }
+      ],
+      "packs": [
+        {
+          "name": "三亚 经典套餐（含 3 大景点）",
+          "price": "¥739",
+          "old": "¥939",
+          "rating": "4.9",
+          "tags": [
+            "景点通票",
+            "含接送"
+          ],
+          "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          "name": "三亚 深度美食套餐",
+          "price": "¥459",
+          "old": "¥559",
+          "rating": "4.8",
+          "tags": [
+            "当地美食",
+            "小团"
+          ],
+          "img": "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=80"
         }
       ]
     },
@@ -370,7 +963,8 @@
           "summary": "人间净土，湖水变幻莫测",
           "price": "160元",
           "tip": "秋天最美",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "天山天池",
@@ -379,7 +973,8 @@
           "summary": "雪山环绕的高山湖泊",
           "price": "95元",
           "tip": "含区间车",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "那拉提草原",
@@ -388,7 +983,8 @@
           "summary": "空中草原，牛羊成群",
           "price": "95元",
           "tip": "夏季最佳",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "独库公路",
@@ -397,7 +993,8 @@
           "summary": "中国最美公路，一日四季",
           "price": "免费",
           "tip": "6-9月开放",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "大巴扎",
@@ -406,7 +1003,121 @@
           "summary": "中亚风情集市，干果手工艺品",
           "price": "免费",
           "tip": "可砍价",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"
+        }
+      ],
+      "banner": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80",
+      "routes": [
+        {
+          "name": "新疆 经典深度游",
+          "days": "4天3晚",
+          "price": "¥1,299",
+          "rating": "4.8",
+          "tags": [
+            "纯玩无购物",
+            "含门票"
+          ],
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=700&q=80",
+          "sold": 8500
+        },
+        {
+          "name": "新疆 轻松休闲游",
+          "days": "3天2晚",
+          "price": "¥899",
+          "rating": "4.7",
+          "tags": [
+            "自由行",
+            "可拆分"
+          ],
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=700&q=80",
+          "sold": 8800
+        }
+      ],
+      "hotels": [
+        {
+          "name": "新疆 市中心全景酒店",
+          "price": "¥570/晚",
+          "rating": "4.7",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "含早餐",
+            "可取消"
+          ]
+        },
+        {
+          "name": "新疆 轻奢设计师酒店",
+          "price": "¥485/晚",
+          "rating": "4.8",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "免费停车",
+            "亲子友好"
+          ]
+        }
+      ],
+      "acts": [
+        {
+          "name": "新疆 人气一日游",
+          "price": "¥399",
+          "rating": "4.6",
+          "tag": "含接送",
+          "tags": [
+            "含接送",
+            "中文导览"
+          ],
+          "img": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 3 小时 · 3500+ 人参加"
+        },
+        {
+          "name": "新疆 摄影小团体验",
+          "price": "¥479",
+          "rating": "4.7",
+          "tag": "小团",
+          "tags": [
+            "小团",
+            "摄影领队"
+          ],
+          "img": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 4 小时 · 3700+ 人参加"
+        },
+        {
+          "name": "新疆 夜游观光体验",
+          "price": "¥559",
+          "rating": "4.8",
+          "tag": "夜游",
+          "tags": [
+            "夜游",
+            "免费取消"
+          ],
+          "img": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 5 小时 · 3900+ 人参加"
+        }
+      ],
+      "packs": [
+        {
+          "name": "新疆 经典套餐（含 3 大景点）",
+          "price": "¥799",
+          "old": "¥999",
+          "rating": "4.9",
+          "tags": [
+            "景点通票",
+            "含接送"
+          ],
+          "img": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          "name": "新疆 深度美食套餐",
+          "price": "¥499",
+          "old": "¥599",
+          "rating": "4.8",
+          "tags": [
+            "当地美食",
+            "小团"
+          ],
+          "img": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=700&q=80"
         }
       ]
     },
@@ -428,7 +1139,8 @@
           "summary": "世界屋脊上的宫殿，宏伟神圣",
           "price": "200元",
           "tip": "提前预约",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1533968002176-fd24a1a2b21f?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "大昭寺",
@@ -437,7 +1149,8 @@
           "summary": "藏传佛教圣地，朝圣者云集",
           "price": "85元",
           "tip": "清晨转经",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "纳木错",
@@ -446,7 +1159,8 @@
           "summary": "西藏三大圣湖之一，湛蓝如镜",
           "price": "120元",
           "tip": "注意高反",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "羊卓雍措",
@@ -455,7 +1169,8 @@
           "summary": "宝石蓝的圣湖，环湖公路美",
           "price": "60元",
           "tip": "海拔高",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "甜茶馆",
@@ -464,7 +1179,121 @@
           "summary": "藏式甜茶，酥油茶配藏面",
           "price": "人均20",
           "tip": "体验当地生活",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=600&q=80"
+        }
+      ],
+      "banner": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=800&q=80",
+      "routes": [
+        {
+          "name": "拉萨 经典深度游",
+          "days": "4天3晚",
+          "price": "¥1,299",
+          "rating": "4.8",
+          "tags": [
+            "纯玩无购物",
+            "含门票"
+          ],
+          "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=700&q=80",
+          "sold": 9200
+        },
+        {
+          "name": "拉萨 轻松休闲游",
+          "days": "3天2晚",
+          "price": "¥899",
+          "rating": "4.7",
+          "tags": [
+            "自由行",
+            "可拆分"
+          ],
+          "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=700&q=80",
+          "sold": 9500
+        }
+      ],
+      "hotels": [
+        {
+          "name": "拉萨 市中心全景酒店",
+          "price": "¥600/晚",
+          "rating": "4.7",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "含早餐",
+            "可取消"
+          ]
+        },
+        {
+          "name": "拉萨 轻奢设计师酒店",
+          "price": "¥510/晚",
+          "rating": "4.8",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "免费停车",
+            "亲子友好"
+          ]
+        }
+      ],
+      "acts": [
+        {
+          "name": "拉萨 人气一日游",
+          "price": "¥439",
+          "rating": "4.6",
+          "tag": "含接送",
+          "tags": [
+            "含接送",
+            "中文导览"
+          ],
+          "img": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 3 小时 · 4000+ 人参加"
+        },
+        {
+          "name": "拉萨 摄影小团体验",
+          "price": "¥519",
+          "rating": "4.7",
+          "tag": "小团",
+          "tags": [
+            "小团",
+            "摄影领队"
+          ],
+          "img": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 4 小时 · 4200+ 人参加"
+        },
+        {
+          "name": "拉萨 夜游观光体验",
+          "price": "¥599",
+          "rating": "4.8",
+          "tag": "夜游",
+          "tags": [
+            "夜游",
+            "免费取消"
+          ],
+          "img": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 5 小时 · 4400+ 人参加"
+        }
+      ],
+      "packs": [
+        {
+          "name": "拉萨 经典套餐（含 3 大景点）",
+          "price": "¥859",
+          "old": "¥1059",
+          "rating": "4.9",
+          "tags": [
+            "景点通票",
+            "含接送"
+          ],
+          "img": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          "name": "拉萨 深度美食套餐",
+          "price": "¥539",
+          "old": "¥639",
+          "rating": "4.8",
+          "tags": [
+            "当地美食",
+            "小团"
+          ],
+          "img": "https://images.unsplash.com/photo-1533106418989-88406c7cc8ca?auto=format&fit=crop&w=700&q=80"
         }
       ]
     },
@@ -486,7 +1315,8 @@
           "summary": "小蛮腰，珠江夜景最佳观景点",
           "price": "150元",
           "tip": "晚上亮灯",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "沙面岛",
@@ -495,7 +1325,8 @@
           "summary": "欧陆风情建筑群，文艺拍照地",
           "price": "免费",
           "tip": "下午光好",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "长隆野生动物世界",
@@ -504,7 +1335,8 @@
           "summary": "亲子必去，动物大迁徙表演",
           "price": "250元",
           "tip": "早点入园",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "珠江夜游",
@@ -513,7 +1345,8 @@
           "summary": "游船看两岸灯火",
           "price": "98元",
           "tip": "夜景美",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "陶陶居早茶",
@@ -522,7 +1355,8 @@
           "summary": "百年茶楼，虾饺烧卖一流",
           "price": "人均80",
           "tip": "排队久",
-          "rating": 5
+          "rating": 5,
+          "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
         },
         {
           "name": "上下九步行街",
@@ -531,7 +1365,121 @@
           "summary": "老广州骑楼街，小吃聚集",
           "price": "免费",
           "tip": "晚上热闹",
-          "rating": 4
+          "rating": 4,
+          "img": "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=600&q=80"
+        }
+      ],
+      "banner": "https://images.unsplash.com/photo-1523374228107-231e9f4622d4?auto=format&fit=crop&w=800&q=80",
+      "routes": [
+        {
+          "name": "广州 经典深度游",
+          "days": "4天3晚",
+          "price": "¥1,299",
+          "rating": "4.8",
+          "tags": [
+            "纯玩无购物",
+            "含门票"
+          ],
+          "img": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80",
+          "sold": 9900
+        },
+        {
+          "name": "广州 轻松休闲游",
+          "days": "3天2晚",
+          "price": "¥899",
+          "rating": "4.7",
+          "tags": [
+            "自由行",
+            "可拆分"
+          ],
+          "img": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80",
+          "sold": 10200
+        }
+      ],
+      "hotels": [
+        {
+          "name": "广州 市中心全景酒店",
+          "price": "¥630/晚",
+          "rating": "4.7",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "含早餐",
+            "可取消"
+          ]
+        },
+        {
+          "name": "广州 轻奢设计师酒店",
+          "price": "¥535/晚",
+          "rating": "4.8",
+          "loc": "市中心 · 近地铁",
+          "img": "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80",
+          "tags": [
+            "免费停车",
+            "亲子友好"
+          ]
+        }
+      ],
+      "acts": [
+        {
+          "name": "广州 人气一日游",
+          "price": "¥479",
+          "rating": "4.6",
+          "tag": "含接送",
+          "tags": [
+            "含接送",
+            "中文导览"
+          ],
+          "img": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 3 小时 · 4500+ 人参加"
+        },
+        {
+          "name": "广州 摄影小团体验",
+          "price": "¥559",
+          "rating": "4.7",
+          "tag": "小团",
+          "tags": [
+            "小团",
+            "摄影领队"
+          ],
+          "img": "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 4 小时 · 4700+ 人参加"
+        },
+        {
+          "name": "广州 夜游观光体验",
+          "price": "¥639",
+          "rating": "4.8",
+          "tag": "夜游",
+          "tags": [
+            "夜游",
+            "免费取消"
+          ],
+          "img": "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=80",
+          "meta": "约 5 小时 · 4900+ 人参加"
+        }
+      ],
+      "packs": [
+        {
+          "name": "广州 经典套餐（含 3 大景点）",
+          "price": "¥919",
+          "old": "¥1119",
+          "rating": "4.9",
+          "tags": [
+            "景点通票",
+            "含接送"
+          ],
+          "img": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80"
+        },
+        {
+          "name": "广州 深度美食套餐",
+          "price": "¥579",
+          "old": "¥679",
+          "rating": "4.8",
+          "tags": [
+            "当地美食",
+            "小团"
+          ],
+          "img": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80"
         }
       ]
     }

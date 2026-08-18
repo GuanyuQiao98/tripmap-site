@@ -415,12 +415,105 @@ a{color:inherit;text-decoration:none}
 .mystats .ms b{font-size:18px;font-weight:900;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .mystats .ms span{font-size:11px;color:var(--muted);display:block;margin-top:2px}
 
+
+/* ===== 移动端顶部 logo ===== */
+.mtopbar{display:none}
+@media(max-width:767px){
+  .mtopbar{display:flex;position:fixed;top:0;left:0;right:0;z-index:60;align-items:center;gap:10px;padding:max(10px,env(safe-area-inset-top)) 16px 10px;background:rgba(255,255,255,.86);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);border-bottom:1px solid var(--line)}
+  .mtopbar .mhint{margin-left:auto;font-size:10.5px;color:var(--muted);font-weight:700}
+  .page{padding-top:62px}
+}
+
+/* ===== 行程页：Klook 式目的地探索 ===== */
+.plan-head{display:flex;align-items:flex-end;gap:14px;margin:6px 0 16px;flex-wrap:wrap}
+.plan-head .dest-select{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+.dest-select select{width:180px}
+.p-banner{position:relative;height:min(44vh,320px);min-height:220px;border-radius:26px;overflow:hidden;margin-bottom:18px;box-shadow:0 20px 50px rgba(15,23,42,.18)}
+.p-banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.p-banner .pbo{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,0) 30%,rgba(15,23,42,.8) 100%);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(16px,3vw,30px)}
+.p-banner .pbtag{display:inline-flex;align-self:flex-start;font-size:11px;font-weight:800;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:5px 13px;border-radius:999px;margin-bottom:10px;backdrop-filter:blur(6px)}
+.p-banner h3{font-size:clamp(22px,3vw,32px);font-weight:900;letter-spacing:-.5px}
+.p-banner p{font-size:13px;opacity:.9;margin-top:6px}
+.p-banner .pbfrom{display:inline-flex;align-self:flex-start;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,#ff4d4f,#f97316);border-radius:999px;padding:6px 14px;margin-top:12px;box-shadow:0 6px 16px rgba(255,77,79,.4)}
+.plan-layout{display:grid;grid-template-columns:190px 1fr;gap:18px;align-items:start}
+@media(max-width:1023px){.plan-layout{grid-template-columns:1fr}}
+.subnav-side{position:sticky;top:18px;display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:20px;padding:10px;backdrop-filter:blur(12px)}
+.subnav-side .sn2{display:flex;align-items:center;gap:10px;border:none;background:transparent;padding:11px 14px;border-radius:14px;font-size:13.5px;font-weight:800;color:#475569;cursor:pointer;font-family:inherit;text-align:left;transition:all .18s}
+.subnav-side .sn2:hover{background:rgba(233,231,255,.6);color:var(--indigo)}
+.subnav-side .sn2.active{background:var(--grad);color:#fff;box-shadow:0 6px 16px rgba(14,165,233,.35)}
+.subnav-side .sn2 .cnt{margin-left:auto;font-size:10.5px;font-weight:800;color:#94a3b8;background:#f1f5f9;border-radius:999px;padding:2px 9px}
+.subnav-side .sn2.active .cnt{background:rgba(255,255,255,.25);color:#fff}
+.subnav-top{display:none}
+@media(max-width:1023px){
+  .subnav-top{display:flex;gap:8px;overflow-x:auto;position:sticky;top:56px;z-index:20;padding:10px 2px;margin:0 -2px 14px;background:rgba(246,247,251,.9);backdrop-filter:blur(12px);scrollbar-width:none}
+  .subnav-top::-webkit-scrollbar{display:none}
+  .subnav-top .sn2{white-space:nowrap;border:1px solid var(--line);background:rgba(255,255,255,.9);color:#475569;border-radius:999px;padding:8px 15px;font-size:12.5px;font-weight:800;cursor:pointer;font-family:inherit;transition:all .18s}
+  .subnav-top .sn2.active{background:var(--grad);color:#fff;border-color:transparent}
+}
+@media(max-width:767px){.subnav-top{top:60px}}
+.plan-main{min-width:0}
+.plan-sec{margin-bottom:28px;scroll-margin-top:80px}
+.plan-sec.hidden{display:none}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1100px){.pkg-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.pkg-grid{grid-template-columns:1fr}}
+.pkg{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:all .25s;cursor:pointer;display:flex;flex-direction:column}
+.pkg:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,23,42,.13)}
+.pkg .pim{position:relative;height:140px;overflow:hidden;background:linear-gradient(135deg,#e0e7ff,#fce7f3)}
+.pkg .pim img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pkg:hover .pim img{transform:scale(1.07)}
+.pkg .pim .ptag{position:absolute;left:10px;top:10px;font-size:10.5px;font-weight:800;color:#4338ca;background:rgba(255,255,255,.94);padding:4px 10px;border-radius:999px;backdrop-filter:blur(4px)}
+.pkg .pim .star{position:absolute;right:10px;top:10px;font-size:10.5px;font-weight:900;color:#92400e;background:rgba(255,244,230,.94);padding:4px 10px;border-radius:999px}
+.pkg .pb{padding:12px 14px;display:flex;flex-direction:column;flex:1}
+.pkg .pt{font-size:13.5px;font-weight:800;line-height:1.4;min-height:38px}
+.pkg .pm{font-size:11px;color:var(--muted);margin-top:6px}
+.pkg .ptags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.pkg .ptags span{font-size:9.5px;font-weight:700;color:#0c4a6e;background:#e0f2fe;border-radius:999px;padding:3px 8px}
+.pkg .pp{display:flex;align-items:baseline;gap:7px;margin-top:10px}
+.pkg .pp b{font-size:17px;color:#ff4d4f;font-weight:900}
+.pkg .pp s{font-size:11px;color:#94a3b8}
+.pkg .pbtn{margin-top:10px;width:100%;padding:10px;border-radius:13px}
+.spot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1100px){.spot-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.spot-grid{grid-template-columns:1fr}}
+.spotcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:all .25s;cursor:pointer}
+.spotcard:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,23,42,.13)}
+.spotcard .sim{position:relative;height:130px;overflow:hidden}
+.spotcard .sim img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.spotcard:hover .sim img{transform:scale(1.07)}
+.spotcard .sim .sic{position:absolute;left:10px;top:10px;width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 3px 10px rgba(0,0,0,.15)}
+.spotcard .sb{padding:12px 14px}
+.spotcard .sn2{font-size:14px;font-weight:800;display:flex;align-items:center;gap:6px}
+.spotcard .ss{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5;min-height:32px}
+.spotcard .smeta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:1100px){.act-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.act-grid{grid-template-columns:1fr}}
+.actcard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:all .25s;cursor:pointer}
+.actcard:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(15,23,42,.13)}
+.actcard .aim{position:relative;height:120px;overflow:hidden}
+.actcard .aim img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.actcard:hover .aim img{transform:scale(1.07)}
+.actcard .aim .atag{position:absolute;left:10px;top:10px;font-size:10px;font-weight:800;color:#fff;background:rgba(99,102,241,.85);padding:4px 10px;border-radius:999px;backdrop-filter:blur(4px)}
+.actcard .ab{padding:12px 14px}
+.actcard .an{font-size:13.5px;font-weight:800}
+.actcard .am{font-size:11px;color:var(--muted);margin-top:4px}
+.actcard .ap{display:flex;align-items:center;margin-top:8px}
+.actcard .ap b{font-size:16px;color:#ff4d4f;font-weight:900}
+.actcard .ap .ar{margin-left:auto;font-size:11px;font-weight:800;color:#92400e;background:#fff7ed;border-radius:999px;padding:3px 10px}
+.planner{margin-top:6px;scroll-margin-top:80px}
+
 @media(prefers-reduced-motion:reduce){.blob,.pin.active .ic,.ring{animation:none}.reveal{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
 <div class="bgfx"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="blob b5"></div><div class="blob b6"></div></div>
 <div id="app">
+
+  <header class="mtopbar">
+    <div class="brand"><span class="logo">🗺</span><div><b>途迹<span>TripMap</span></b></div></div>
+    <span class="mhint">左右滑动切换页面</span>
+  </header>
 
   <header class="topbar">
     <div class="brand"><span class="logo">🗺</span><div><b>途迹<span>TripMap</span></b><small>AI TRAVEL PLANNER</small></div></div>
@@ -517,29 +610,75 @@ a{color:inherit;text-decoration:none}
       </div>
     </section>
 
-    <!-- ========== 行程 ========== -->
+    <!-- ========== 行程（Klook 式目的地探索） ========== -->
     <section class="page" id="page-plan">
       <div class="wrap">
-        <div class="section-title">🗺 行程规划<small id="planDest">当前：成都</small></div>
-        <div class="daytabs" id="dayTabs">
-          <button class="chip active" data-day="all">全部</button>
-          <button class="chip" data-day="1">Day 1</button>
-          <button class="chip" data-day="2">Day 2</button>
-          <button class="chip" data-day="3">Day 3</button>
-          <button class="chip" data-day="4">Day 4</button>
+        <div class="plan-head">
+          <div>
+            <div class="section-title" style="margin-bottom:6px">🗺 目的地探索<small id="planDest">当前：成都</small></div>
+            <p style="font-size:12px;color:var(--muted)">选择目的地，看看当地有什么好玩的、酒店和套餐</p>
+          </div>
+          <div class="dest-select">
+            <select class="input" id="planDestSelect" aria-label="选择目的地"></select>
+            <button class="btn small" id="planDestGo">切换</button>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>🧺 素材库 <span style="font-size:11px;color:var(--muted);font-weight:500">（点 + 添加到 Day）</span></h3>
-          <div class="mats" id="mats"></div>
-        </div>
+        <div class="p-banner" id="planBanner"></div>
 
-        <div class="card">
-          <h3>📅 每日行程</h3>
-          <div class="days" id="days"></div>
+        <div class="plan-layout">
+          <aside class="subnav-side" id="subnavSide"></aside>
+          <div class="plan-main">
+            <div class="subnav-top" id="subnavTop"></div>
+
+            <div class="plan-sec" data-sec="route">
+              <div class="sec-h"><div><div class="en">Routes</div><h2 style="font-size:22px">🚩 行程<em>路线</em></h2></div></div>
+              <div class="pkg-grid" id="planRoutes"></div>
+            </div>
+
+            <div class="plan-sec" data-sec="hotel">
+              <div class="sec-h"><div><div class="en">Hotels</div><h2 style="font-size:22px">🏨 当地<em>酒店</em></h2></div></div>
+              <div class="pkg-grid" id="planHotels"></div>
+            </div>
+
+            <div class="plan-sec" data-sec="spot">
+              <div class="sec-h"><div><div class="en">Spots</div><h2 style="font-size:22px">🏛 经典<em>景点</em></h2></div></div>
+              <div class="spot-grid" id="planSpots"></div>
+            </div>
+
+            <div class="plan-sec" data-sec="act">
+              <div class="sec-h"><div><div class="en">Activities</div><h2 style="font-size:22px">🎯 推荐<em>活动</em></h2></div></div>
+              <div class="act-grid" id="planActs"></div>
+            </div>
+
+            <div class="plan-sec" data-sec="pack">
+              <div class="sec-h"><div><div class="en">Packages</div><h2 style="font-size:22px">🎁 当地<em>套餐</em></h2></div></div>
+              <div class="pkg-grid" id="planPacks"></div>
+            </div>
+
+            <div class="planner" id="planner">
+              <div class="sec-h"><div><div class="en">Planner</div><h2 style="font-size:22px">📅 我的<em>行程规划</em></h2><small style="font-size:11px;color:var(--muted);margin-left:10px">点 + 添加地点</small></div></div>
+              <div class="daytabs" id="dayTabs">
+                <button class="chip active" data-day="all">全部</button>
+                <button class="chip" data-day="1">Day 1</button>
+                <button class="chip" data-day="2">Day 2</button>
+                <button class="chip" data-day="3">Day 3</button>
+                <button class="chip" data-day="4">Day 4</button>
+              </div>
+              <div class="card">
+                <h3>🧺 素材库 <span style="font-size:11px;color:var(--muted);font-weight:500">（点 + 添加到 Day）</span></h3>
+                <div class="mats" id="mats"></div>
+              </div>
+              <div class="card">
+                <h3>📅 每日行程</h3>
+                <div class="days" id="days"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+
 
     <!-- ========== 攻略 ========== -->
     <section class="page" id="page-guide">
@@ -799,6 +938,7 @@ a{color:inherit;text-decoration:none}
     renderMapPanel();
     document.getElementById('planDest').textContent='当前：'+d.name;
     renderMats();renderDays();
+    renderPlan();
     if(toastIt)showToast('📍 已切换到 '+d.name+'，素材库已更新');
   }
 
@@ -1293,12 +1433,99 @@ a{color:inherit;text-decoration:none}
   };
 
 
+
+  /* ================= 行程：Klook 式探索 ================= */
+  var PLAN_NAV=[{id:'all',ic:'🌈',n:'全部'},{id:'route',ic:'🚩',n:'行程路线'},{id:'hotel',ic:'🏨',n:'酒店'},{id:'spot',ic:'🏛',n:'景点'},{id:'act',ic:'🎯',n:'推荐活动'},{id:'pack',ic:'🎁',n:'当地套餐'}];
+  function pkgCard(p,btn){
+    return '<div class="pkg"><div class="pim"><img src="'+p.img+'" alt="" loading="lazy" onerror="this.style.display=\'none\'"><span class="ptag">'+p.ctag+'</span><span class="star">★ '+p.rating+'</span></div>'+
+      '<div class="pb"><div class="pt">'+p.name+'</div><div class="pm">'+p.meta+'</div>'+
+      '<div class="ptags">'+p.tags.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>'+
+      '<div class="pp"><b>'+p.price+'</b>'+(p.old?'<s>'+p.old+'</s>':'')+'</div>'+
+      (btn?'<button class="btn small green pbtn">'+btn+'</button>':'')+'</div></div>';
+  }
+  function renderPlan(){
+    var d=destById(state.destId);
+    var minPack=99999;
+    (d.packs||[]).forEach(function(p){var n=parseInt(String(p.price).replace(/[^0-9]/g,''),10)||99999;if(n<minPack)minPack=n;});
+    var b=document.getElementById('planBanner');
+    b.innerHTML='<img src="'+d.banner+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'+
+      '<div class="pbo"><span class="pbtag">📍 '+d.en+'</span><h3>'+d.emoji+' '+d.name+'</h3><p>'+d.tagline+' · '+d.desc+'</p>'+
+      '<span class="pbfrom">🎁 当地套餐低至 ¥'+minPack+' 起</span></div>';
+    document.getElementById('planRoutes').innerHTML=(d.routes||[]).map(function(p){
+      return pkgCard({img:p.img,ctag:'🚩 行程路线',rating:p.rating,name:p.name,meta:p.days+' · '+p.sold+' 人已选',tags:p.tags,price:p.price},'＋ 加入行程');
+    }).join('');
+    document.getElementById('planHotels').innerHTML=(d.hotels||[]).map(function(p){
+      return pkgCard({img:p.img,ctag:'🏨 酒店',rating:p.rating,name:p.name,meta:p.loc,tags:p.tags,price:p.price},'查看房型');
+    }).join('');
+    document.getElementById('planSpots').innerHTML=(d.spots||[]).map(function(s){
+      var c=catStyle(s.cat);
+      return '<div class="spotcard"><div class="sim"><img src="'+s.img+'" alt="" loading="lazy" onerror="this.style.display=\'none\'"><span class="sic">'+s.emoji+'</span></div>'+
+        '<div class="sb"><div class="sn2">'+s.name+' <span style="font-size:10px;color:#f59e0b;letter-spacing:-1px">'+stars(s.rating)+'</span></div>'+
+        '<div class="ss">'+s.summary+'</div><div class="smeta"><span class="tag cat">'+c[1]+' '+s.cat+'</span><span class="tag price">'+s.price+'</span><span class="tag tip">💡 '+s.tip+'</span></div></div></div>';
+    }).join('');
+    document.getElementById('planActs').innerHTML=(d.acts||[]).map(function(p){
+      return '<div class="actcard"><div class="aim"><img src="'+p.img+'" alt="" loading="lazy" onerror="this.style.display=\'none\'"><span class="atag">'+p.tag+'</span></div>'+
+        '<div class="ab"><div class="an">'+p.name+'</div><div class="am">'+p.meta+'</div>'+
+        '<div class="ap"><b>'+p.price+'</b><span class="ar">★ '+p.rating+'</span></div></div></div>';
+    }).join('');
+    document.getElementById('planPacks').innerHTML=(d.packs||[]).map(function(p){
+      return pkgCard({img:p.img,ctag:'🎁 当地套餐',rating:p.rating,name:p.name,meta:d.name+' · 超值组合',tags:p.tags,price:p.price,old:p.old},'立即预订');
+    }).join('');
+    renderPlanNav();
+    Array.prototype.slice.call(document.querySelectorAll('#planRoutes .pkg .pbtn')).forEach(function(b){
+      b.addEventListener('click',function(){showToast('🚩 已把该路线加入规划（演示）');});
+    });
+    Array.prototype.slice.call(document.querySelectorAll('#planHotels .pkg .pbtn')).forEach(function(b){
+      b.addEventListener('click',function(){showToast('🏨 正在跳转酒店详情（演示）');});
+    });
+    Array.prototype.slice.call(document.querySelectorAll('#planPacks .pkg .pbtn')).forEach(function(b){
+      b.addEventListener('click',function(){showToast('🎁 已领取套餐优惠券（演示）');});
+    });
+    var sel=document.getElementById('planDestSelect');if(sel)sel.value=state.destId;
+  }
+  function renderPlanNav(){
+    var d=destById(state.destId);
+    var cnts={route:(d.routes||[]).length,hotel:(d.hotels||[]).length,spot:(d.spots||[]).length,act:(d.acts||[]).length,pack:(d.packs||[]).length};
+    function item(n){
+      var active=(state.planCat||'all')===n.id;
+      return '<button class="sn2'+(active?' active':'')+'" data-cat="'+n.id+'">'+n.ic+' '+n.n+(cnts[n.id]!==undefined?'<span class="cnt">'+cnts[n.id]+'</span>':'')+'</button>';
+    }
+    document.getElementById('subnavSide').innerHTML=PLAN_NAV.map(item).join('');
+    document.getElementById('subnavTop').innerHTML=PLAN_NAV.map(item).join('');
+    Array.prototype.slice.call(document.querySelectorAll('.sn2')).forEach(function(b){
+      b.addEventListener('click',function(){setPlanCat(b.dataset.cat);});
+    });
+  }
+  function setPlanCat(cat){
+    state.planCat=cat;
+    Array.prototype.slice.call(document.querySelectorAll('.sn2')).forEach(function(b){b.classList.toggle('active',b.dataset.cat===cat);});
+    Array.prototype.slice.call(document.querySelectorAll('.plan-sec')).forEach(function(s){s.classList.toggle('hidden',cat!=='all'&&s.dataset.sec!==cat);});
+    if(cat!=='all'){
+      var sec=document.querySelector('.plan-sec[data-sec="'+cat+'"]');
+      if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
+  function renderPlanHead(){
+    var sel=document.getElementById('planDestSelect');sel.innerHTML='';
+    DATA.destinations.forEach(function(d){
+      var o=document.createElement('option');o.value=d.id;o.textContent=d.emoji+' '+d.name+' · '+d.en;sel.appendChild(o);
+    });
+    sel.value=state.destId;
+  }
+  function bindPlanUI(){
+    var sel=document.getElementById('planDestSelect'),go=document.getElementById('planDestGo');
+    function pick(){selectDest(sel.value,true);}
+    go.addEventListener('click',pick);
+    sel.addEventListener('change',pick);
+  }
+
   /* ================= 启动：加载 data/db.json ================= */
   function renderAll(){
     renderHero();renderDests();renderMap();renderMapPanel();renderStats();renderFeats();
     renderMats();renderDays();renderGuides();renderMembers();renderVotes();renderChat();
     renderDeals();tickCd();setInterval(tickCd,1000);
     renderFeed();renderMine();renderComposeImgs();
+    renderPlanHead();renderPlan();bindPlanUI();
     document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
     heroAuto();
   }
