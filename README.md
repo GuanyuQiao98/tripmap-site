@@ -1,4 +1,4 @@
-﻿# 途迹 TripMap · 左右滑动版（静态演示）
+# 途迹 TripMap · 左右滑动版（静态演示）
 
 仿制 [trip-app-orcin.vercel.app](https://trip-app-orcin.vercel.app/) 的静态版页面。
 
